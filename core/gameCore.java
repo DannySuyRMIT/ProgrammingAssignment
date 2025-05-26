@@ -1,21 +1,21 @@
-package Core;
-
+package core;
 import util.*;
+
+/**@author Christian Rayos */
 
 public class gameCore {
     // Establish private values
     private static boolean mapUnlocked = false;
     private static boolean deathOccurred = false;
     private static String currentLocation;
+    private static double playerCoins;
 
+    // Obtain Player Name
+    static String userName = userScanner.userScan();
     public static void gameLogic() {
         // Initialise Scanner :(
         userScanner userInput = new userScanner();
 
-
-        // Obtain Player Name
-        System.out.print("Insert name:\n");
-        String userName = userScanner.userScan();
 
         while (!deathOccurred) {
             // Initialise Boolean Checks
@@ -37,7 +37,9 @@ public class gameCore {
                     if (userChoice.equals("navigate") || userChoice.equals("1")) {
                         // Put navigate Methods here
                         System.out.print("navigate\n");
-                        // Pretend shop found
+
+                        // Provide options to go N, E, S, W
+                        // Temporary placement to test shop.
                         System.out.print("- -Shop tile located- - \n");
                         shop.shopDialogue();
                         loopCheck = true;
@@ -84,5 +86,9 @@ public class gameCore {
 
     public static void DeathOccur() { // Changes deathOccurred from False to True
         deathOccurred = true;
+    }
+
+    public String getUserName() { //Temporary Method, relocate to playerData
+        return userName;
     }
 }

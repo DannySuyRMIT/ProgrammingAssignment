@@ -1,5 +1,7 @@
-import Core.gameCore;
+import core.gameCore;
 import util.userScanner;
+
+/**@author Christian Rayos */
 
 public class gameStart {
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class gameStart {
         while (!userSelect) {
             if (userChoice.equals("begin") || userChoice.equals("1")) {
                 System.out.println("\u001B[2J");
-                System.out.print("Entering the mist...\n");
+                System.out.print("Entering the mist...\nYour name is:\n");
                 userSelect = true;
                 gameCore.gameLogic();
             } else if (userChoice.equals("exit") || userChoice.equals("2")) {
