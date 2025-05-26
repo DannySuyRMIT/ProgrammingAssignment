@@ -3,18 +3,25 @@ package Core;
 import util.*;
 
 public class gameCore {
+    // Establish private values
     private static boolean mapUnlocked = false;
     private static boolean deathOccurred = false;
     private static String currentLocation;
 
     public static void gameLogic() {
-
+        // Initialise Scanner :(
         userScanner userInput = new userScanner();
 
-        // game process
+
+        // Obtain Player Name
+        System.out.print("Insert name:\n");
+        String userName = userScanner.userScan();
+
         while (!deathOccurred) {
             // Initialise Boolean Checks
             boolean loopCheck = false;
+
+
             System.out.print("- - -Options- - -\n[Interact] [Menu]\n");
 
             String userChoice = userScanner.userScan();
@@ -48,7 +55,7 @@ public class gameCore {
 
                     } else if (userChoice.equals("stats") || userChoice.equals("4")) {
                         // put stats methods here
-                        System.out.print("Display stats");
+                        System.out.printf("- - -%s- - -",userName);
                     } else if (userChoice.equals("exit") || userChoice.equals("5")) {
                         // exit
                         System.out.print("Quit W.");
