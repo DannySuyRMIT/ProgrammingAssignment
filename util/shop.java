@@ -1,10 +1,11 @@
 package util;
-import core.gameCore;
-import data.gameItems;
+import core.*;
+import data.*;
+
 import java.util.ArrayList;
 
 /**@author Christian Rayos */
-/**@Ver 2.1               */
+/**@Ver 2.2               */
 /**@Date 26/05/25        */
 
 public class shop {
@@ -13,24 +14,21 @@ public class shop {
     // Initialise shopInventory
     private static ArrayList<gameItems> shopInventory = populateShopInventory();
 
-    // Initialise
-    static String userChoice;
-
     public static ArrayList<gameItems> populateShopInventory() {
         shopInventory = new ArrayList<gameItems>();
-        // Format                       itemName [Name]   toolTip [Description]                   itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable]
+        // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
         // Weapons
-        shopInventory.add(new gameItems("dagger","Mildly pointy. Inflicts Bleed.",1,2.5,"Weapon",true));
-        shopInventory.add(new gameItems("dull blade","Not so sharp... still better than nothing.",1,3.5,"Weapon",true));
-        shopInventory.add(new gameItems("not-so-dull blade","Decently sharpened. Good for a fight.",1,5.0,"Weapon",true));
-        shopInventory.add(new gameItems("scam blade","Dull blade repainted...'are they trying to scam us? '",1,8.0,"Weapon",true));
+        shopInventory.add(new gameWeaponItems("dagger","Mildly pointy. Inflicts Bleed.",1,2.5,true,2));
+        shopInventory.add(new gameWeaponItems("dull blade","Not so sharp... still better than nothing.",1,3.5,true,3));
+        shopInventory.add(new gameWeaponItems("not-so-dull blade","Decently sharpened. Good for a fight.",1,5.0,true, 5));
+        shopInventory.add(new gameWeaponItems("scam blade","Dull blade repainted...'are they trying to scam us? '",1,8.0,true,3));
         // Armour
-        shopInventory.add(new gameItems("dull steel helmet","A bit worn, but stops you from losing your head.",1,6.0,"Armour",true));
-        shopInventory.add(new gameItems("dull steel breastplate","Has some dents, but you'll live. Maybe.",1,12.0,"Armour",true));
-        shopInventory.add(new gameItems("dull steel leggings","Bit difficult to move in, but still protects.",1,8.0,"Armour",true));
-        shopInventory.add(new gameItems("dull steel boots","You might trip, so don't do that.",1,4.0,"Armour",true));
+        shopInventory.add(new gameArmourItems("dull steel helmet","A bit worn, but stops you from losing your head.",1,6.0,true,2));
+        shopInventory.add(new gameArmourItems("dull steel breastplate","Has some dents, but you'll live. Maybe.",1,12.0,true,3));
+        shopInventory.add(new gameArmourItems("dull steel leggings","Bit difficult to move in, but still protects.",1,8.0,true,2));
+        shopInventory.add(new gameArmourItems("dull steel boots","You might trip, so don't do that.",1,4.0,true,1));
         // Utility
-        shopInventory.add(new gameItems("pebble","A small stone... might trip your foe",3,2.0,"Usable",true));
+        shopInventory.add(new gameItems("pebble","A small stone... might trip your foe",3,2.0,"Usable",false));
         shopInventory.add(new gameItems("red potion","Wonders of alchemy... tastes bitter, but heals you. grants 15HP.",5,4.0,"Usable",true));
         return shopInventory;
     }
@@ -144,7 +142,9 @@ public class shop {
 
     public static void shopGamble() {
     // Do later
-    } public static void viewShopItems() {
+    }
+
+    public static void viewShopItems() {
         for (int i = 0; i < shopInventory.size(); i++) {
             System.out.println("["+i+"]"+shopInventory.get(i).toString());
         }

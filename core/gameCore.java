@@ -3,15 +3,13 @@ import util.*;
 
 /**@author Christian Rayos */
 /**@Editor Faaz Ruheemaun */
-/**@Ver 2.1              */
+/**@Ver 2.2              */
 /**@Date 25/05/25       */
 
 public class gameCore {
     // Establish private values
     private static boolean mapUnlocked = false;
     private static boolean deathOccurred = false;
-    private static String currentLocation;
-    private static double playerCoins;
 
     // Obtain Player Name
     static String userName = userScanner.userScan();
@@ -19,18 +17,28 @@ public class gameCore {
         // Initialise Scanner :(
         userScanner userInput = new userScanner();
 
+        // Initialise boolean locationEntryPrinted
+        boolean locationEntryPrinted = false;
 
         while (!deathOccurred) {
-            // Initialise Boolean Checks
+            // Initialise Boolean Check
             boolean loopCheck = false;
 
 
-            System.out.print("- - -Options- - -\n[Interact] [Menu]\n");
+            // Check if it's the first during menu.
+            if (locationEntryPrinted == false) {
+                gameLocations.locationEntry();
+            }
+            locationEntryPrinted = false;
+
+            // Print initial Choices
+            System.out.print("\n- - -Options- - -\n");
+            System.out.print("\n[Interact] [Menu]\n");
 
             String userChoice = userScanner.userScan();
 
             if (userChoice.equals("interact")) {
-
+                gameLocations.locationInteract();
             }
 
             else if (userChoice.equals("menu")) {
@@ -54,7 +62,7 @@ public class gameCore {
                             // put map methods here
                             gameMap.drawMap();
                         } else {
-                            System.out.print("Go unlock the map mate. It's in the store >.<\n");
+                            System.out.print("Go unlock the map. It's in the store >.<\n");
                         }
 
                     } else if (userChoice.equals("inventory") || userChoice.equals("3")) {
@@ -72,6 +80,8 @@ public class gameCore {
                         System.out.print("Select a valid option...\n");
                     }
                 }
+//            } else { // Any responses that isn't "menu" or "interact" will prevent locationEntry from being printed again
+                locationEntryPrinted = true;
             }
             //
 

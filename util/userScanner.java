@@ -2,7 +2,7 @@ package util;
 import java.util.Scanner;
 
 /**@author Christian Rayos */
-/**@Ver 1.1              */
+/**@Ver 1.2               */
 /**@Date 25/05/25        */
 
 public class userScanner {
@@ -14,7 +14,7 @@ public class userScanner {
         String userChoice = userInput.nextLine().toLowerCase(); // obtains user input and makes it lowercase
         return userChoice;
     } public static int indexScan() {
-        int indexSelect = userInput.nextInt();
+        int indexSelect = userInput.nextInt(); // used for Inventorysd
         return indexSelect;
     }
 }

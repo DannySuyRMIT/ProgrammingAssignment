@@ -5,4 +5,6 @@ javaFiles under:
 
 @author Christian Rayos
 
-gameStart.java | gameCore.java | shop.java | userScanner.java | gameItems.java
+gameStart.java | gameCore.java | shop.java | userScanner.java | gameItems.java 
+
+gameLocations.java | gameWeaponItems.java | gameArmourItems.java

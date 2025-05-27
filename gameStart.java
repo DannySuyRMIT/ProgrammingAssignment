@@ -2,7 +2,7 @@ import core.gameCore;
 import util.userScanner;
 
 /**@author Christian Rayos */
-/**@Ver 2.02              */
+/**@Ver 2.3              */
 /**@Date 25/05/25        */
 
 public class gameStart {
@@ -32,7 +32,7 @@ public class gameStart {
                 userSelect = true;
                 System.exit(0);
             } else {
-                System.out.print("Please Select an option:");
+                System.out.print("Please Select an option:\n");
                 userChoice = userInput.userScan();
             }
         }

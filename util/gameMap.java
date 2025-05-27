@@ -63,18 +63,18 @@ public class gameMap {
         int playerY = loc[0];
         int playerX = loc[1];
 
-
+        // rowDivider for printing
         String rowDivider = "+-----+-----+-----+-----+-----+";
 
         System.out.println();
-        for (int y = 5; y >= 1; y--) {
-            System.out.println(rowDivider);
+        for (int y = 5; y >= 1; y--) { // repeats until all rows have been accounted for
+            System.out.println(rowDivider); // Prints initial horizontal and leftmost border of map
             System.out.print("|");
 
-            for (int x = 1; x <= 5; x++) {
+            for (int x = 1; x <= 5; x++) { // prints rest of row
                 String label;
 
-                if (playerY == y && playerX == x) {
+                if (playerY == y && playerX == x) { //
                     label = " P ";
                 } else if (isRoom(y, x)) {
                     label = formatLabel(getLabel(y, x));
@@ -203,4 +203,9 @@ public class gameMap {
             System.out.println("You can't go that way!");
         }
     }
+    public static int getCurrentLocation() { // Obtain players' current location
+        return currentLocation;
+    }
+
 }
+
