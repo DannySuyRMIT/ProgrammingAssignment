@@ -1,6 +1,8 @@
 package data;
 
 /**@author Christian Rayos */
+/**@Ver 1.2               */
+/**@Date 25/05/25        */
 
 public class gameItems {
     private String itemName;
@@ -50,4 +52,7 @@ public class gameItems {
     public String toString() {
        return String.format("%dX\t%s\t$%.2f",this.itemQty, this.itemName, this.itemCost);
     }
+//    public gameitemDrops () {
+//
+//    }
 }

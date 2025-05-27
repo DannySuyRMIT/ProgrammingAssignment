@@ -4,6 +4,8 @@ import data.gameItems;
 import java.util.ArrayList;
 
 /**@author Christian Rayos */
+/**@Ver 2.1               */
+/**@Date 26/05/25        */
 
 public class shop {
     // Initialise temporary value of spiritCoins || remove later

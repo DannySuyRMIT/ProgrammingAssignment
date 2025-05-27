@@ -2,6 +2,8 @@ package util;
 import java.util.Scanner;
 
 /**@author Christian Rayos */
+/**@Ver 1.1              */
+/**@Date 25/05/25        */
 
 public class userScanner {
     static Scanner userInput = new Scanner(System.in);

@@ -2,6 +2,9 @@ package core;
 import util.*;
 
 /**@author Christian Rayos */
+/**@Editor Faaz Ruheemaun */
+/**@Ver 2.1              */
+/**@Date 25/05/25       */
 
 public class gameCore {
     // Establish private values
@@ -27,26 +30,29 @@ public class gameCore {
             String userChoice = userScanner.userScan();
 
             if (userChoice.equals("interact")) {
-                unlockMap();
+
             }
+
             else if (userChoice.equals("menu")) {
                 // Menu
                 while(loopCheck == false) {
                     System.out.print("\n- - - Menu - - -\n1. [Navigate]   \n2. [Map]   \n3. [Inventory]   \n4. [Stats]   \n5. [Exit]\n");
                     userChoice = userScanner.userScan();
+
                     if (userChoice.equals("navigate") || userChoice.equals("1")) {
                         // Put navigate Methods here
                         System.out.print("navigate\n");
-
+                        gameMap.gameNavigate();
                         // Provide options to go N, E, S, W
                         // Temporary placement to test shop.
-                        System.out.print("- -Shop tile located- - \n");
-                        shop.shopDialogue();
+//                        System.out.print("- -Shop tile located- - \n");
+//                        shop.shopDialogue();
                         loopCheck = true;
+
                     } else if (userChoice.equals("map") || userChoice.equals("2")) {
                         if (mapUnlocked == true) {
                             // put map methods here
-                            System.out.print("map display:");
+                            gameMap.drawMap();
                         } else {
                             System.out.print("Go unlock the map mate. It's in the store >.<\n");
                         }
@@ -54,7 +60,7 @@ public class gameCore {
                     } else if (userChoice.equals("inventory") || userChoice.equals("3")) {
                         // put inventory methods here
                         System.out.print("Display inventory");
-
+                        unlockMap();
                     } else if (userChoice.equals("stats") || userChoice.equals("4")) {
                         // put stats methods here
                         System.out.printf("- - -%s- - -",userName);

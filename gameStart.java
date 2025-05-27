@@ -2,6 +2,8 @@ import core.gameCore;
 import util.userScanner;
 
 /**@author Christian Rayos */
+/**@Ver 2.02              */
+/**@Date 25/05/25        */
 
 public class gameStart {
     public static void main(String[] args) {
@@ -22,7 +24,6 @@ public class gameStart {
         String userChoice = userInput.userScan();
         while (!userSelect) {
             if (userChoice.equals("begin") || userChoice.equals("1")) {
-                System.out.println("\u001B[2J");
                 System.out.print("Entering the mist...\nYour name is:\n");
                 userSelect = true;
                 gameCore.gameLogic();
