@@ -3,7 +3,7 @@ import core.gameCore;
 
 /**@author Faaz Ruheemaun  */
 /**@Editor Christian Rayos*/
-/**@Ver 2.0              */
+/**@Ver 2.1              */
 /**@Date 25/05/25       */
 
 public class gameMap {
@@ -31,7 +31,8 @@ public class gameMap {
             {"3", "5", "S"},   // Spawn
             {"5", "1", "F"},   // Fogged Forest
             {"5", "3", "Sh"},  // Shrine
-            {"5", "5", "O*"}   // Outpost
+            {"5", "5", "O*"},  // Outpost
+            {"1", "2", "R"}    // Ritual Area
     };
 
     public static void gameNavigate() {
@@ -98,6 +99,7 @@ public class gameMap {
         System.out.println(" F   = Fogged Forest");
         System.out.println(" Sh  = Shrine");
         System.out.println(" O*  = Outpost");
+        System.out.println(" R   = Ritual Area");
         System.out.println(" P   = Player");
         System.out.println(" -   = Inaccessible\n");
     }
