@@ -9,8 +9,8 @@ public class gameBattle {
         String playerName = scanner.nextLine();
 
         // Create a player using the entered name
-        gamePlayer player = new gamePlayer(playerName, 50, 3);
-        gameEnemy enemy = new gameEnemy("dsada", 15, 2);
+        gamePlayer player = new gamePlayer(userName, 50, 3);
+        gameEnemy enemy = new gameEnemy(entityName, 15, 2);
 
         // Battle loop: Player and enemy take turns attacking
         while (player.isAlive() && enemy.isAlive()) {
@@ -46,8 +46,6 @@ public class gameBattle {
                 System.out.println("\nYou have been defeated!");
                 break;
             }
-        }
-
-        scanner.close();
+        }  
     }
 }
