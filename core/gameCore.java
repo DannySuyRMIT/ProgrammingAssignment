@@ -1,9 +1,10 @@
 package core;
+import data.gamePlayer;
 import util.*;
 
 /**@author Christian Rayos */
 /**@Editor Faaz Ruheemaun */
-/**@Ver 2.3              */
+/**@Ver 2.4              */
 /**@Date 25/05/25       */
 
 public class gameCore {
@@ -68,6 +69,7 @@ public class gameCore {
                     } else if (userChoice.equals("inventory") || userChoice.equals("3")) {
                         // put inventory methods here
                         System.out.print("Display inventory");
+                        gamePlayer.showInventory();
                         unlockMap();
                     } else if (userChoice.equals("stats") || userChoice.equals("4")) {
                         // put stats methods here

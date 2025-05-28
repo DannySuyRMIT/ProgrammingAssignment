@@ -3,7 +3,7 @@ import core.*;
 
 /**@author Danny Suy       */
 /**@Editor Christian Rayos*/
-/**@Ver 1.2              */
+/**@Ver 1.3              */
 /**@Date 28/05/25       */
 
 public class gamePlayer {
@@ -11,17 +11,20 @@ public class gamePlayer {
     int playerHealth;
     int playerAttackPower;
     static int playerSpiritCoins = 20;
-    String item1 = "";
-    String item2 = "";
-    String item3 = "";
-    String item4 = "";
-    String item5 = "";
-    String item6 = "";
-    String item7 = "";
-    String item8 = "";
+    static String item1 = "";
+    static String item2 = "";
+    static String item3 = "";
+    static String item4 = "";
+    static String item5 = "";
+    static String item6 = "";
+    static String item7 = "";
+    static String item8 = "";
 
+    // Initialise playerInventory Array
+    private static String[] playerInventory = new String[8];
 
-
+    // Initialise isEmpty check
+    static boolean isEmpty;
     // Creating the player
     public gamePlayer(String userName, int playerHealth, int playerAttackPower) {
         this.userName = userName;
@@ -50,9 +53,9 @@ public class gamePlayer {
     }
     //add an item to the players inventory when dropped or bought
      public void addItem(String itemName) {
-        if (item1.equals("")) {
+        if (item1.isEmpty()) {
             item1 = itemName;
-        } else if (item2.equals("")) {
+        } else if (item2.isEmpty()) {
             item2 = itemName;
         } else {
             System.out.println("Inventory full!");
@@ -61,15 +64,23 @@ public class gamePlayer {
         System.out.println("You received: " + itemName);
     }
     //Creating an inventory for the player
-    public void showInventory() {
+    public static void showInventory() {
         System.out.println("\n--- Inventory ---");
         System.out.println("Coins: " + playerSpiritCoins);
 
-        String[] items = {item1, item2, item3, item4, item5, item6, item7, item8};
-        boolean isEmpty = true;
+        // Fill player inventory with placeholders
+        playerInventory[0] = item1;
+        playerInventory[1] = item2;
+        playerInventory[2] = item3;
+        playerInventory[3] = item4;
+        playerInventory[4] = item5;
+        playerInventory[5] = item6;
+        playerInventory[6] = item7;
+        playerInventory[7] = item8;
+         boolean isEmpty = true;
 
-        for (String item : items) {
-            if (!item.equals("")) {
+        for (String item : playerInventory) {
+            if (!item.isEmpty()) {
                 System.out.println("- " + item);
                 isEmpty = false;
             }
@@ -83,5 +94,10 @@ public class gamePlayer {
     public static int getPlayerSpiritCoins() {
         return playerSpiritCoins;
     }
+
+    public static boolean getIsEmpty() {
+        return isEmpty;
+    }
+
 }
 

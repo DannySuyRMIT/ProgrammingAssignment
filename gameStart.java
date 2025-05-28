@@ -18,7 +18,6 @@ public class gameStart {
         // Lore block
         System.out.print("\nAfter a night of heavy drinking with your fellow workers, just to cope with\nthe news of being laid off from work. You head out, walking down the hazy\nstreets of Tokyo, your surroundings becoming a blur from the effects of alcohol. \nLured down an alleyway, you spot an old, small shrine, just as you pass out...\n\n");
         System.out.print("Waking up to an old wooden pier, your eyes adjust to the dark and humid atmosphere \naround you. The waters around you move about suspiciously, its' depths hidden \nunderneath the surface. The atmosphere and mood of this newfound place feels... off,\nunwelcoming to you. Feeling that it's not safe to stay where you are, you have only\none choice... Move through the pier towards the silhouette of the island ahead...\nAnd try to get back home. Alive hopefully.\n");
-
         // Choice to begin or exit.
         System.out.println("Decide:\n1. Begin\n2. Exit");
         String userChoice = userInput.userScan();

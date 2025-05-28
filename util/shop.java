@@ -5,7 +5,7 @@ import data.*;
 import java.util.ArrayList;
 
 /**@author Christian Rayos */
-/**@Ver 2.2               */
+/**@Ver 2.3               */
 /**@Date 26/05/25        */
 
 public class shop {
@@ -49,7 +49,15 @@ public class shop {
 
     public static void shopSell() {
         System.out.print("Select item to sell\n");
-        // Do later
+        boolean isEmpty = gamePlayer.getIsEmpty();
+        if (isEmpty = false) {
+
+        } else {
+            System.out.print("You have nothing to sell.");
+        }
+
+
+
     }
 
     public static void shopDialogue() {
@@ -141,6 +149,25 @@ public class shop {
         }
     }
 
+    private static ArrayList<gameItems> shopGambleInventory = populateGambleInventory();
+
+    public static ArrayList<gameItems> populateGambleInventory() {
+        shopGambleInventory = new ArrayList<gameItems>();
+        // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
+        // Weapons
+        shopGambleInventory.add(new gameWeaponItems("gilded dagger","Slightly more pointy, and more shiny. Inflicts Bleed II.",1,0,true,3));
+        shopGambleInventory.add(new gameWeaponItems("gilded blade","Sharpened enough not to damage the gold. You might get robbed when using this.",1,0,true,5));
+
+        // Utility
+        shopGambleInventory.add(new gameItems("gilded pebble","A shiny pebble with flair. Twice as likely to trip your foe.",1,0,"usable",false));
+        shopGambleInventory.add(new gameItems("shiny potion","better than red, but still just as bitter. Increases HP and ATK.",1,0,"usable",true));
+
+        // Fodder
+        shopGambleInventory.add(new gameItems("dirty dirt","Dirt. plain old dirt. if you sift it, you might find a nugget.",1,0,"useless",false));
+
+        return shopGambleInventory;
+
+    }
     public static void shopGamble() {
     // Do later
     }
