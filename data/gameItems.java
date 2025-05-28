@@ -21,8 +21,6 @@ public class gameItems {
         this.itemType = itemType;
         this.canSell = canSell;
 
-
-        // Get Methods
     }
 
     public String getItemName() {
@@ -49,7 +47,6 @@ public class gameItems {
         return canSell;
     }
 
-    // setMethod
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }

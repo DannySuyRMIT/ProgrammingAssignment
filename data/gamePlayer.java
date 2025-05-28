@@ -1,12 +1,16 @@
-/**@author Danny Suy  */
-/**@Ver 1.1           */
-/**@Date 28/05/25     */
+package data;
+import core.*;
+
+/**@author Danny Suy       */
+/**@Editor Christian Rayos*/
+/**@Ver 1.2              */
+/**@Date 28/05/25       */
 
 public class gamePlayer {
-    String name;
-    int health;
-    int attackPower;
-    int coins = 50; 
+    String userName = gameCore.getUserName();
+    int playerHealth;
+    int playerAttackPower;
+    static int playerSpiritCoins = 20;
     String item1 = "";
     String item2 = "";
     String item3 = "";
@@ -19,30 +23,30 @@ public class gamePlayer {
 
 
     // Creating the player
-    public gamePlayer(String name, int health, int attackPower) {
-        this.name = name;
-        this.health = health;
-        this.attackPower = attackPower;
+    public gamePlayer(String userName, int playerHealth, int playerAttackPower) {
+        this.userName = userName;
+        this.playerHealth = playerHealth;
+        this.playerAttackPower = playerAttackPower;
     }
 
     // Attack Power
     public void attack(gameEnemy enemy) {
-        System.out.println(name + " attacks " + enemy.name + " for " + attackPower + " damage!");
-        enemy.health -= attackPower;
+        System.out.println(userName + " attacks " + enemy.entityName + " for " + playerAttackPower + " damage!");
+        enemy.entityHealth -= playerAttackPower;
     }
 
     // Take damage
     public void takeDamage(int damage) {
-        health -= damage;
-        if (health <= 0) {
-            health = 0;
-            System.out.println(name + " is defeated!");
+        playerHealth -= damage;
+        if (playerHealth <= 0) {
+            playerHealth = 0;
+            System.out.println(userName + " is defeated!");
         }
     }
 
     //Check if player has more than 0 HP
     public boolean isAlive() {
-        return health > 0;
+        return playerHealth > 0;
     }
     //add an item to the players inventory when dropped or bought
      public void addItem(String itemName) {
@@ -59,16 +63,25 @@ public class gamePlayer {
     //Creating an inventory for the player
     public void showInventory() {
         System.out.println("\n--- Inventory ---");
-        System.out.println("Coins: " + coins);
-        if (!item1.equals("")) System.out.println("- " + item1);
-        if (!item2.equals("")) System.out.println("- " + item2);
-        if (!item1.equals("")) System.out.println("- " + item3);
-        if (!item2.equals("")) System.out.println("- " + item4);
-        if (!item1.equals("")) System.out.println("- " + item5);
-        if (!item2.equals("")) System.out.println("- " + item6);
-        if (!item1.equals("")) System.out.println("- " + item7);
-        if (!item2.equals("")) System.out.println("- " + item8);
-        if (item1.equals("") && item2.equals("")) System.out.println("Inventory is empty.");
+        System.out.println("Coins: " + playerSpiritCoins);
+
+        String[] items = {item1, item2, item3, item4, item5, item6, item7, item8};
+        boolean isEmpty = true;
+
+        for (String item : items) {
+            if (!item.equals("")) {
+                System.out.println("- " + item);
+                isEmpty = false;
+            }
+        }
+
+        if (isEmpty) {
+            System.out.println("Inventory is empty.");
+        }
+    }
+
+    public static int getPlayerSpiritCoins() {
+        return playerSpiritCoins;
     }
 }
 

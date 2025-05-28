@@ -3,7 +3,7 @@ import util.*;
 
 /**@author Christian Rayos */
 /**@Editor Faaz Ruheemaun */
-/**@Ver 2.2              */
+/**@Ver 2.3              */
 /**@Date 25/05/25       */
 
 public class gameCore {
@@ -80,7 +80,7 @@ public class gameCore {
                         System.out.print("Select a valid option...\n");
                     }
                 }
-//            } else { // Any responses that isn't "menu" or "interact" will prevent locationEntry from being printed again
+            } else { // Any responses that isn't "menu" or "interact" will prevent locationEntry from being printed again
                 locationEntryPrinted = true;
             }
             //
@@ -104,7 +104,7 @@ public class gameCore {
         deathOccurred = true;
     }
 
-    public String getUserName() { //Temporary Method, relocate to playerData
+    public static String getUserName() { //Temporary Method, relocate to playerData
         return userName;
     }
 }

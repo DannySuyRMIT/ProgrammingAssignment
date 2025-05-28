@@ -9,8 +9,7 @@ import java.util.ArrayList;
 /**@Date 26/05/25        */
 
 public class shop {
-    // Initialise temporary value of spiritCoins || remove later
-    static double spiritCoins = 20.00;
+
     // Initialise shopInventory
     private static ArrayList<gameItems> shopInventory = populateShopInventory();
 
@@ -34,6 +33,7 @@ public class shop {
     }
 
     public static void gameBuy () {
+        int spiritCoins = gamePlayer.getPlayerSpiritCoins();
 
         System.out.printf("Available spirit coins: $%.2f\n",spiritCoins); //Place playerCoin here
         System.out.print("- - -Items for sale- - -\n");
@@ -70,6 +70,7 @@ public class shop {
     }
 
     public static void itemPurchase() {
+        int spiritCoins = gamePlayer.getPlayerSpiritCoins();
         String userChoice = userScanner.userScan();
         if (gameCore.isMapUnlocked() == false && userChoice.equals("map")) {
             if (spiritCoins >= 5.0) {
