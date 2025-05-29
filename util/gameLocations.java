@@ -5,6 +5,34 @@ package util;
 /**@Date 27/05/25        */
 
 public class gameLocations {
+    static boolean hasBambooWood = false;
+    static boolean hasBambooRaft = false;
+    static boolean hasTalisman = false;
+    static boolean hasSpiritOrb = false;
+    static boolean hasTriggeredGoodShrine = false;
+    static boolean hasTriggeredBadShrine = false;
+
+    //    if (hasBambooWood == true) {
+//        System.out.print("You have found a bamboo wooden shrine.\n");
+//    } else {
+//        System.out.print("You haven't found a bamboo wooden shrine.\n");
+//    }
+//    if (hasBambooRaft == true) {
+//        System.out.print("You have found a bamboo raft.\n");
+//    }
+//    if (hasTalisman == true) {
+//        System.out.print("You have found a talisman.\n");
+//    }
+//    if (hasSpiritOrb == true) {
+//        System.out.print("You have found a spirit orb.\n");
+//    }
+//    if (hasTriggeredGoodShrine == true) {
+//        System.out.print("You have found a good shrine.\n");
+//    }
+//    if (hasTriggeredBadShrine == true) {
+//        System.out.print("You have found a bad shrine.\n");
+//    }
+//
     public static void locationEntry() {
         int currentLocation = gameMap.getCurrentLocation();
 
@@ -84,4 +112,53 @@ public class gameLocations {
 
         }
     }
+
+    public static boolean getHasBambooRaft() {
+        return hasBambooRaft;
+    }
+
+    public static void setHasBambooRaft() {
+        hasBambooRaft = true;
+    }
+
+    public static boolean getHasBambooWood() {
+        return hasBambooWood;
+    }
+
+    public static void setHasBambooWood() {
+        hasBambooWood = true;
+    }
+
+    public static boolean getHasTalisman() {
+        return hasTalisman;
+    }
+
+    public static void setHasTalisman() {
+        hasTalisman = true;
+    }
+
+    public static boolean getHasSpiritOrb() {
+        return hasSpiritOrb;
+    }
+
+    public static void setHasSpiritOrb() {
+        hasSpiritOrb = true;
+    }
+
+    public static boolean getHasTriggeredGoodShrine() {
+        return hasTriggeredGoodShrine;
+    }
+
+    public static void setHasTriggeredGoodShrine() {
+        hasTriggeredGoodShrine = true;
+    }
+
+    public static boolean getHasTriggeredBadShrine() {
+        return hasTriggeredBadShrine;
+    }
+
+    public static void setHasTriggeredBadShrine() {
+        hasTriggeredBadShrine = true;
+    }
+
 }
