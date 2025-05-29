@@ -76,7 +76,7 @@ public class gameCore {
                     } else if (userChoice.equals("stats") || userChoice.equals("4")) {
                         // put stats methods here
                         System.out.print("- - -Stats- - -\n");
-                        gamePlayer.playerStats();
+                        data.gamePlayer.showInventory();
 
                     } else if (userChoice.equals("back") || userChoice.equals("5")) {
                         loopCheck = true;

@@ -1,8 +1,8 @@
 package util;
+import core.gameCore;
 import data.gameEnemy;
 import data.gamePlayer;
-import java.util.Scanner;
-import static core.gameCore.userName;
+import java.util.Random;
 
 /**@author Danny Suy  */
 /**@Ver 1.4           */
@@ -10,12 +10,7 @@ import static core.gameCore.userName;
 
 
 public class gameBattle {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // Create a player using the entered name
-        gamePlayer player = new gamePlayer(userName, 50, 3);
-        gameEnemy enemy = new gameEnemy("name", 15, 2);
+    public static void gameCombat(gamePlayer player, gameEnemy enemy, String poolType) {
 
         // Battle loop: Player and enemy take turns attacking
         while (player.isAlive() && enemy.isAlive()) {
@@ -24,7 +19,7 @@ public class gameBattle {
             System.out.println("1. Attack");
             System.out.println("2. Inventory");
             System.out.print("Choose an action: ");
-            int action = scanner.nextInt();
+            int action = userScanner.intScan();
 
             if (action == 1) {
                 player.attack(enemy);
@@ -39,6 +34,19 @@ public class gameBattle {
             // Check if the enemy is dead
             if (!enemy.isAlive()) {
                 System.out.println("\nYou defeated the enemy!");
+                gameEnemy.enemyPool.disableEnemyPool(poolType);
+                Random droppedChance = new Random();
+
+                int spiritCoins = droppedChance.nextInt(3)+1;
+                spiritCoins += gamePlayer.getPlayerSpiritCoins();
+                gamePlayer.setPlayerSpiritCoins(spiritCoins);
+
+                int dropItem = droppedChance.nextInt(0,100);
+                if (dropItem <= 6) {
+                    dropItem = droppedChance.nextInt(0,shop.populateShopInventory().size()+1);
+                    player.addItem(shop.populateShopInventory().get(dropItem));
+                }
+
                 break;
             }
 
@@ -49,6 +57,8 @@ public class gameBattle {
             // Check if the player is dead
             if (!player.isAlive()) {
                 System.out.println("\nYou have been defeated!");
+                gameCore.DeathOccur();
+                gameEnding.gameEnding();
                 break;
             }
         }

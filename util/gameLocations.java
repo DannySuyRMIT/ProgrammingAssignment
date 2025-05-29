@@ -25,6 +25,9 @@ public class gameLocations {
     static boolean hasReadSign = false;
     static boolean hasPendant = false;
 
+    // Initialize
+    static gamePlayer player1 = new gamePlayer(gameCore.getUserName(), gamePlayer.getPlayerHealth(),gamePlayer.getPlayerAttackPower(),gamePlayer.getPlayerDefencePower());
+
     public static void locationEntry() {
         int currentLocation = gameMap.getCurrentLocation();
 
@@ -43,6 +46,12 @@ public class gameLocations {
                 break;
             case 302: // Island Piers
                 System.out.print("\n - Island Piers - \nThe Fog has gotten thicker around now, settling just above the water surface which separates\nthe islands. This is the only way to and from the western portion of this area.\n");
+                if (getHasBambooRaft() == true && gameEnemy.enemyPool.getLocationOnePoolState() == true) { // Guaranteed location fight.
+                    gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomOneLocation();
+
+                    System.out.printf("\nEnemy encounter: %s", chosenEnemy);
+                    gameBattle.gameCombat(player1, chosenEnemy, "locationOneEnemies");
+                }
                 break;
             case 303: // Village
                 System.out.print("\n - Village - \nThe misty dew disperses around you, revealing a small cozy village with some beings that move about...\nA lady stands there, seemingly glancing your direction.\n");
@@ -60,6 +69,19 @@ public class gameLocations {
                 System.out.print("\n - old tower - \nSpotting an old wooden militaristic tower by the cliff side overlooking the waters,\nIt feels eerily silent. You might wanna be on your guard... and on the lookout \nfor some good items.\n");
                 break;
             default: // else
+
+                // Create Random class
+                Random percentChance = new Random();
+
+                // Generate 1-100
+                int spawnChance = percentChance.nextInt(100)+1;
+                if (spawnChance <= 10) { // Provide 10% to spawn
+                    gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomCommon();
+                    System.out.printf("\nEnemy encounter: %s", chosenEnemy);
+                    gameBattle.gameCombat(player1, chosenEnemy, "CommonEnemies");
+
+
+                }
                 System.out.print("\n - Idle Plains - \nThere's nothing interesting here...\nIt's best to keep moving.\n");
 
         }
@@ -179,6 +201,7 @@ public class gameLocations {
                                 } while (endingChoice == false);
                             } else if (getHasTriggeredBadShrine() == true) {
                                 System.out.print("\nThe orb remains unmoved from its' resting place.. hopefully the spirit is satisfied.\n");
+                                System.out.print("It's time to head back to the pier... There's a feeling that have feeling something's there.\n");
                             } else {
                                 System.out.print("The shrine only emits an omnious feeling... the choice not to \nchoose this one may have been wise.\n");
                             }
@@ -331,6 +354,7 @@ public class gameLocations {
                                 } while (endingChoice == false);
                             } else if (getHasTriggeredShrine() == true) {
                                 System.out.print("\nThe shrine slowly hums with energy, and the fog around dissipates\naround you... though the energy of the shrine disperses gradually\n");
+                                System.out.print("It's to approach the end of the Pier, see if an exit has been found.\n");
                             } else {
                                 System.out.print("\nThe shrine's is unchanged, so it's unclear if not picking this was wrong...\n");
                             }
@@ -344,6 +368,13 @@ public class gameLocations {
                     } else if (userChoice.equals("pier edge") && endingChoice == true) {
                         validChoice = true;
                         System.out.print("\nApproaching the end of the Pier, you turn arround and see a big foe\nbefre you... It seems this is the final stretch\n");
+                        // Obtain Boss Enemy
+                        gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomBoss();
+
+                        System.out.printf("\nEnemy encounter: %s", chosenEnemy);
+                        // Simulate Battle
+                        gameBattle.gameCombat(player1,chosenEnemy,"bossEnemies");
+                                
                         gameEnding.gameEnding();
                     }else if (userChoice.equals("back")) {
                         validChoice = true;
@@ -398,6 +429,7 @@ public class gameLocations {
                                 } while (endingChoice == false);
                             } else if (getHasTriggeredGoodShrine() == true) {
                                 System.out.print("\nWith the gradual retreat of the fog, the beauty of the forestry\nand its surroundings can be seen...It seems the fog is slowly retreating from the island itself\n");
+                                System.out.print("It's time to head back to the pier... There's a feeling that have feeling something's there.\n");
                             } else {
                                 System.out.print("\nThe shrine lays still, with  a small calmning atmosphere still present...\n");
                             }
@@ -432,6 +464,13 @@ public class gameLocations {
                         validChoice = true;
                         System.out.print("\nSpotting a blade stabbed in the ground, You glance around before taking it\n. As soon as you grab it though, unwelcomed accompany arrives.\n");
                         setHasObtainedBlade();
+                        if (getHasObtainedBlade() == true && gameEnemy.enemyPool.getLocationTwoPoolState() == true) { // Guaranteed location fight.
+                            gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomTwoLocation();
+                            System.out.printf("Enemy encountered: %s", chosenEnemy);
+                            gameBattle.gameCombat(player1, chosenEnemy, "locationTwoEnemies");
+                        }
+
+
                         System.out.print("\n  Katana acquired.\n");
                     } else if (userChoice.equals("back")) {
                         validChoice = true;

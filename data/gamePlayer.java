@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class gamePlayer {
     String userName = gameCore.getUserName();
-    static int playerHealth = 20;
+    static int playerHealth = 50;
     static int playerAttackPower = 2;
     static int playerDefencePower = 1;
     static int playerSpiritCoins = 0;
@@ -20,7 +20,7 @@ public class gamePlayer {
     // Initialise isEmpty check
     static boolean isEmpty;
     // Creating the player
-    public gamePlayer(String userName, int playerHealth, int playerAttackPower ) {
+    public gamePlayer(String userName, int playerHealth, int playerAttackPower, int playerDefencePower) {
         this.userName = userName;
         this.playerHealth = playerHealth;
         this.playerAttackPower = playerAttackPower;
@@ -35,7 +35,13 @@ public class gamePlayer {
 
     // Take damage
     public void takeDamage(int damage) {
-        playerHealth -= damage;
+        if (playerDefencePower >= damage) {
+            damage = 1;
+            playerHealth -= damage;
+        } else {
+            damage -= playerDefencePower;
+            playerHealth -= damage;
+            }
         if (playerHealth <= 0) {
             playerHealth = 0;
             System.out.println(userName + " is defeated!");
@@ -48,14 +54,14 @@ public class gamePlayer {
     }
 
     //add an item to the players inventory when dropped or bought
-    public void addItem(gameItems itemName) {
+    public void addItem(gameItems gameItems) {
         if (playerInventory.size() < 8) {
-            playerInventory.add(itemName);
+            playerInventory.add(gameItems);
         } else {
             System.out.println("Inventory full!");
             return;
         }
-        System.out.println("You received: " + itemName);
+        System.out.println("You received: " + gameItems);
     }
     // Remove
     public void removeItem(gameItems gameItems) {
@@ -97,8 +103,32 @@ public class gamePlayer {
         }
     }
 
-    public static void playerStats() {
+    public void playerStats() {
         System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d\n", playerAttackPower, playerHealth, playerDefencePower);
+    }
+
+    public static int getPlayerHealth() {
+        return playerHealth;
+    }
+
+    public static void setPlayerHealth(int HP) {
+        playerHealth = HP;
+    }
+
+    public static int getPlayerAttackPower() {
+        return playerAttackPower;
+    }
+
+    public static void setPlayerAttackPower(int ATK) {
+        playerAttackPower = ATK;
+    }
+
+    public static int getPlayerDefencePower() {
+        return playerDefencePower;
+    }
+
+    public static void setPlayerDefencePower(int DEF) {
+        playerDefencePower = DEF;
     }
 
 }

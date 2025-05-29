@@ -30,9 +30,17 @@ public class gameEnemy {
 
     public class enemyPool {
         static ArrayList<gameEnemy> commonEnemies = new ArrayList<>();
-        static ArrayList<gameEnemy> locationEnemies = new ArrayList<>();
+        static ArrayList<gameEnemy> locationOneEnemies = new ArrayList<>();
+        static ArrayList<gameEnemy> locationTwoEnemies = new ArrayList<>();
         static ArrayList<gameEnemy> eliteEnemies = new ArrayList<>();
         static ArrayList<gameEnemy> bossEnemies = new ArrayList<>();
+
+        // Intialise state of each Pool
+        static boolean commonPoolState = true;
+        static boolean locationPoolOneState = true;
+        static boolean locationPoolTwoState = true;
+        static boolean elitePoolState = true;
+        static boolean bossPoolState = true;
 
         static {
             //Common enemies
@@ -41,10 +49,15 @@ public class gameEnemy {
             commonEnemies.add(new gameEnemy("Ayakashi", 14, 6));
             commonEnemies.add(new gameEnemy("Jibakurei", 15, 4));
 
-            //Location based enemies
-            locationEnemies.add(new gameEnemy("Chimimōryō", 15, 6));
-            locationEnemies.add(new gameEnemy("Ayakashi V2", 19, 9));
-            locationEnemies.add(new gameEnemy("Jibakurei BIG BROTHER", 20, 8));
+            //Location 1 based enemies
+            locationOneEnemies.add(new gameEnemy("Chimimōryō", 15, 6));
+            locationOneEnemies.add(new gameEnemy("Ayakashi V2", 19, 9));
+            locationOneEnemies.add(new gameEnemy("Jibakurei BIG BROTHER", 20, 8));
+
+            //Location 2 based enemies
+            locationTwoEnemies.add(new gameEnemy("Chimimōryō", 15, 6));
+            locationTwoEnemies.add(new gameEnemy("Ayakashi V2", 19, 9));
+            locationTwoEnemies.add(new gameEnemy("Jibakurei BIG BROTHER", 20, 8));
 
             //Elite enemies
             eliteEnemies.add(new gameEnemy("Kitsune", 23, 11));
@@ -53,13 +66,36 @@ public class gameEnemy {
             bossEnemies.add(new gameEnemy("Ronin", 75, 20));
         }
 
+        public static void disableEnemyPool(String poolName) {
+            switch (poolName) {
+                case "commonEnemies":
+                    break;
+                case "locationOneEnemies":
+                    locationPoolOneState = false;
+                    break;
+                case "locationTwoEnemies":
+                    locationPoolTwoState = false;
+                    break;
+                case "eliteEnemies":
+                    elitePoolState = false;
+                    break;
+                case "bossEnemies":
+                    bossPoolState = false;
+                    break;
+            }
+        }
+
         //Grab random enemy from different category
         public static gameEnemy getRandomCommon() {
             return getRandomFromList(commonEnemies);
         }
 
-        public static gameEnemy getRandomLocation() {
-            return getRandomFromList(locationEnemies);
+        public static gameEnemy getRandomOneLocation() {
+            return getRandomFromList(locationOneEnemies);
+        }
+
+        public static gameEnemy getRandomTwoLocation() {
+            return getRandomFromList(locationTwoEnemies);
         }
 
         public static gameEnemy getRandomElite() {
@@ -75,7 +111,22 @@ public class gameEnemy {
             Random rand = new Random();
             return list.get(rand.nextInt(list.size()));
         }
+        
+        public static boolean getLocationOnePoolState() {
+            return locationPoolOneState;
+        }
 
+        public static boolean getLocationTwoPoolState() {
+            return locationPoolTwoState;
+        }
+
+        public static boolean getElitePoolsState() {
+            return elitePoolState;
+        }
+
+        public static boolean getLocationBossState() {
+            return bossPoolState;
+        }
 
     }
 }
