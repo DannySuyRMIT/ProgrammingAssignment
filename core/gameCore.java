@@ -4,7 +4,7 @@ import util.*;
 
 /**@author Christian Rayos */
 /**@Editor Faaz Ruheemaun */
-/**@Ver 2.4              */
+/**@Ver 2.5              */
 /**@Date 25/05/25       */
 
 public class gameCore {
@@ -45,7 +45,7 @@ public class gameCore {
 
             else if (userChoice.equals("menu")) {
                 // Menu
-                while(loopCheck == false) {
+                do {
                     System.out.print("\n- - - Menu - - -\n1. [Navigate]\n2. [Map]\n3. [Inventory]\n4. [Stats]\n5. [Back]\n6. [Exit]\n");
                     userChoice = userScanner.userScan();
 
@@ -82,12 +82,15 @@ public class gameCore {
                     } else { // Make user select valid option
                         System.out.print("Select a valid option...\n");
                     }
-                }
+                } while (loopCheck == false);
             } else { // Any responses that isn't "menu" or "interact" will prevent locationEntry from being printed again
                 locationEntryPrinted = true;
             }
 
         }
+        // Begin gameEnding
+        gameEnding.gameEnding();
+
     } public static boolean isMapUnlocked() { // Provides status of mapUnlocked || True or False
         return mapUnlocked;
     }

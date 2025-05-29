@@ -14,8 +14,13 @@ public class userScanner {
         return userChoice;
     }
 
-    public static int indexScan() {
-        int indexSelect = userInput.nextInt(); // used for Inventorysd
+    public static int intScan() {
+        int indexSelect = 0; // used for Integer usage
+        try {
+            indexSelect = userInput.nextInt();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return indexSelect;
     }
 }

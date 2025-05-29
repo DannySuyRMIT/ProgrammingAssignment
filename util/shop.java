@@ -35,6 +35,10 @@ public class shop {
         return shopInventory;
     }
 
+    /**
+     *
+     * @return returns Contents of shopGambleArray
+     */
     public static ArrayList<gameItems> populateGambleInventory() {
         shopGambleInventory = new ArrayList<gameItems>();
         // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef

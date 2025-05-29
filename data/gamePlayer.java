@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 /**@author Danny Suy       */
 /**@Editor Christian Rayos*/
-/**@Ver 2.0              */
+/**@Ver 2.1              */
 /**@Date 28/05/25       */
 
 public class gamePlayer {
     String userName = gameCore.getUserName();
-    static int playerHealth;
-    static int playerAttackPower;
-    static int playerDefencePower;
-    static int playerSpiritCoins = 20;
+    static int playerHealth = 20;
+    static int playerAttackPower = 2;
+    static int playerDefencePower = 1;
+    static int playerSpiritCoins = 0;
 
     // Initialise playerInventory Inventory
     private static final ArrayList<gameItems> playerInventory = new ArrayList<gameItems>();
@@ -98,12 +98,8 @@ public class gamePlayer {
     }
 
     public static void playerStats() {
-        System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d",playerAttackPower, playerHealth, playerDefencePower);
+        System.out.printf("Current ATK: %d\nCurrent HP: %d\n Current DEF: %d\n", playerAttackPower, playerHealth, playerDefencePower);
     }
-
-//    public static void playerEquip() {
-//        if ();
-//    }
 
 }
 
