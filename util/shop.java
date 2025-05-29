@@ -35,7 +35,7 @@ public class shop {
     public static void gameBuy () {
         int spiritCoins = gamePlayer.getPlayerSpiritCoins();
 
-        System.out.printf("Available spirit coins: $%.2f\n",spiritCoins); //Place playerCoin here
+        System.out.printf("Available spirit coins: $%d\n",spiritCoins); //Place playerCoin here
         System.out.print("- - -Items for sale- - -\n");
         viewShopItems();
 
