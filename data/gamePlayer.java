@@ -20,7 +20,7 @@ public class gamePlayer {
     // Initialise isEmpty check
     static boolean isEmpty;
     // Creating the player
-    public gamePlayer(String userName, int playerHealth, int playerAttackPower, int playerDefencePower ) {
+    public gamePlayer(String userName, int playerHealth, int playerAttackPower ) {
         this.userName = userName;
         this.playerHealth = playerHealth;
         this.playerAttackPower = playerAttackPower;
