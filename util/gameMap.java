@@ -9,7 +9,7 @@ import core.gameCore;
 public class gameMap {
 
     // Initialise
-
+    private static boolean successfulMove = false;
     // Start position is at Spawn (3,5)
     public static int currentLocation = 305;
 
@@ -36,6 +36,8 @@ public class gameMap {
     };
 
     public static void gameNavigate() {
+
+
         System.out.println("You have opened the map!");
         System.out.println("Use commands like 'go north', 'go west' etc.\n");
         System.out.print("Likewise, you may use 'exit' to return to menu.\n");
@@ -49,12 +51,16 @@ public class gameMap {
             System.out.print("Your move: ");
             String userChoice = userScanner.userScan().trim(); // removes any whitespace from.
 
+
             if (userChoice.equals("exit")) {
                 System.out.println("Returning to Menu!");
                 break;
             }
 
             movePlayer(userChoice);
+            if (successfulMove = true) {
+                break;
+            }
         }
     }
 
@@ -201,6 +207,7 @@ public class gameMap {
 
         if (isRoom(y, x)) {
             currentLocation = y * 100 + x;
+            successfulMove = true;
         } else {
             System.out.println("You can't go that way!");
         }

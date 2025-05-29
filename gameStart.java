@@ -25,7 +25,7 @@ public class gameStart {
             if (userChoice.equals("begin") || userChoice.equals("1")) {
                 System.out.print("Entering the mist...\nYour name is:\n");
                 userSelect = true;
-                gameCore.gameLogic();
+                core.gameCore.gameLogic();
             } else if (userChoice.equals("exit") || userChoice.equals("2")) {
                 System.out.print("\nThe Matrix.");
                 userSelect = true;
