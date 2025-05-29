@@ -15,4 +15,8 @@ public class gameArmourItems extends gameItems{
     public int getItemDef() {
         return itemDef;
     }
+
+    public String toString () {
+        return String.format("%dX\t%s \t%s\tDEF: %d",this.getItemQty(), this.getItemName(), this.getToolTip(), this.getItemDef());
+    }
 }

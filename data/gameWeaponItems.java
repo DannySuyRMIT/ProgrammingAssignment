@@ -16,4 +16,7 @@ public class gameWeaponItems extends gameItems {
         return itemAtk;
     }
 
+    public String toString () {
+        return String.format("%dX\t%s \t%s\tATK: %d",this.getItemQty(), this.getItemName(), this.getToolTip(), this.getItemAtk());
+    }
 }

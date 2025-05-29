@@ -59,9 +59,13 @@ public class gameMap {
                 break;
             }
 
-            movePlayer(userChoice);
-            if (successfulMove == true) {
-                break;
+            if (gameCore.isMapUnlocked() == true) {
+                movePlayer(userChoice);
+            } else {
+                movePlayer(userChoice);
+                if (successfulMove == true) {
+                    break;
+                }
             }
         }
     }
@@ -190,8 +194,6 @@ public class gameMap {
     // Move the player around based on input
     public static void movePlayer(String direction) {
 
-        boolean hasBambooRaft = false;
-
 
         int[] loc = getCoordinates(currentLocation);
         int y = loc[0];
@@ -213,9 +215,15 @@ public class gameMap {
         }
 
         if (isRoom(y, x)) {
+            if (currentLocation == 302 && gameLocations.getHasBambooRaft() == false) {
+                int temporaryCurrentLocation = y * 100 + x;
+                if (temporaryCurrentLocation == 301) {
+                    System.out.print("User has nothing to travel on...\n Perhaps a raft is needed.\n");
+                } else {
+                    currentLocation = y * 100 + x;
+                    successfulMove = true;
+                }
 
-            if (currentLocation == 302 && hasBambooRaft == false) {
-                System.out.print("User has nothing to travel on...\n Perhaps a raft is needed.\n");
             } else {
                 currentLocation = y * 100 + x;
                 successfulMove = true;

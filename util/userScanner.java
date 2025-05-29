@@ -16,6 +16,7 @@ public class userScanner {
 
     public static int intScan() {
         int indexSelect = 0; // used for Integer usage
+
         try {
             indexSelect = userInput.nextInt();
         } catch (Exception e) {

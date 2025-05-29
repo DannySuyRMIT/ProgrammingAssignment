@@ -163,7 +163,7 @@ public class shop {
                 System.out.print("You do not have enough spirit Coins\n");
             }
         } else if (userChoice.equals("map")) {
-            System.out.print("map already unlocked. Why you Trying?\n Select another item.");
+            System.out.print("map already unlocked. Why you Trying?\nSelect another item: \n");
             userChoice = userScanner.userScan();
         } else if (!userChoice.equals("map")) {
             String itemSelect = userChoice;

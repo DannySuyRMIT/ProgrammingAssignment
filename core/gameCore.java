@@ -1,6 +1,7 @@
 package core;
 import data.gamePlayer;
 import util.*;
+import java.util.Random;
 
 /**@author Christian Rayos */
 /**@Editor Faaz Ruheemaun */
@@ -11,13 +12,18 @@ public class gameCore {
     // Establish private values
     private static boolean mapUnlocked = false;
     private static boolean deathOccurred = false;
+    static int numberLock;
 
     // Obtain Player Name
     public static String userName = userScanner.userScan();
 
+
     public static void gameLogic() {
-        // Initialise Scanner :(
-        userScanner userInput = new userScanner();
+        // New Random
+        Random randomGen = new Random();
+        // Initialise numberLock
+        int numberLock = randomGen.nextInt((99 - 10) + 1) + 1;
+        setNumberLock(numberLock);
 
         // Initialise boolean locationEntryPrinted
         boolean locationEntryPrinted = false;
@@ -67,7 +73,6 @@ public class gameCore {
                     } else if (userChoice.equals("inventory") || userChoice.equals("3")) {
                         // put inventory methods here
                         gamePlayer.showInventory();
-                        unlockMap();
                     } else if (userChoice.equals("stats") || userChoice.equals("4")) {
                         // put stats methods here
                         System.out.print("- - -Stats- - -\n");
@@ -112,4 +117,13 @@ public class gameCore {
     public static String getUserName() { //Temporary Method, relocate to playerData
         return userName;
     }
+
+    public static int getNumberLock() {
+        return numberLock;
+    }
+
+    public static int setNumberLock(int assignedNumberLock) {
+        return numberLock = assignedNumberLock;
+    }
+
 }
