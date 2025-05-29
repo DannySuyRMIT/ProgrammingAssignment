@@ -1,16 +1,21 @@
+package util;
+import data.gameEnemy;
+import data.gamePlayer;
 import java.util.Scanner;
+import static core.gameCore.userName;
+
+/**@author Danny Suy  */
+/**@Ver 1.4           */
+/**@Date 29/05/25     */
+
 
 public class gameBattle {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Ask the user for their name
-        System.out.print("Enter your character's name: ");
-        String playerName = scanner.nextLine();
-
         // Create a player using the entered name
         gamePlayer player = new gamePlayer(userName, 50, 3);
-        gameEnemy enemy = new gameEnemy(entityName, 15, 2);
+        gameEnemy enemy = new gameEnemy("name", 15, 2);
 
         // Battle loop: Player and enemy take turns attacking
         while (player.isAlive() && enemy.isAlive()) {
@@ -24,7 +29,7 @@ public class gameBattle {
             if (action == 1) {
                 player.attack(enemy);
             } else if (action == 2) {
-                player.showInventory();
+                gamePlayer.showInventory();
                 System.out.print("Choose an item to use (1-8): ");
             } else {
                 System.out.println("Invalid action. Please choose 1 or 2.");
@@ -46,6 +51,6 @@ public class gameBattle {
                 System.out.println("\nYou have been defeated!");
                 break;
             }
-        }  
+        }
     }
 }

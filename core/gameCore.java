@@ -13,7 +13,7 @@ public class gameCore {
     private static boolean deathOccurred = false;
 
     // Obtain Player Name
-    static String userName = userScanner.userScan();
+    public static String userName = userScanner.userScan();
     public static void gameLogic() {
         // Initialise Scanner :(
         userScanner userInput = new userScanner();

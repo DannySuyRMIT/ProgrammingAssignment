@@ -1,12 +1,13 @@
 package data;
-import core.*;
+import core.gameCore;
 
 /**@author Danny Suy       */
 /**@Editor Christian Rayos*/
-/**@Ver 1.3              */
+/**@Ver 1.5              */
 /**@Date 28/05/25       */
 
 public class gamePlayer {
+    private gameCore gameCore;
     String userName = gameCore.getUserName();
     int playerHealth;
     int playerAttackPower;
@@ -52,7 +53,7 @@ public class gamePlayer {
         return playerHealth > 0;
     }
     //add an item to the players inventory when dropped or bought
-     public void addItem(String itemName) {
+    public void addItem(String itemName) {
         if (item1.isEmpty()) {
             item1 = itemName;
         } else if (item2.isEmpty()) {
@@ -77,8 +78,8 @@ public class gamePlayer {
         playerInventory[5] = item6;
         playerInventory[6] = item7;
         playerInventory[7] = item8;
-         boolean isEmpty = true;
 
+        isEmpty = true;
         for (String item : playerInventory) {
             if (!item.isEmpty()) {
                 System.out.println("- " + item);
@@ -88,16 +89,15 @@ public class gamePlayer {
 
         if (isEmpty) {
             System.out.println("Inventory is empty.");
-        }
-    }
 
+        }
+
+    }
     public static int getPlayerSpiritCoins() {
         return playerSpiritCoins;
     }
-
     public static boolean getIsEmpty() {
         return isEmpty;
     }
-
 }
 

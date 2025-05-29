@@ -1,7 +1,7 @@
 package data;
 
 /**@author Danny Suy  */
-/**@Ver 1.0           */
+/**@Ver 1.1           */
 /**@Date 26/05/25     */
 
 public class gameEnemy {
