@@ -9,11 +9,12 @@ public class userScanner {
     static Scanner userInput = new Scanner(System.in);
     public static String userScan() {
 
-
         // obtain and return
         String userChoice = userInput.nextLine().toLowerCase(); // obtains user input and makes it lowercase
         return userChoice;
-    } public static int indexScan() {
+    }
+
+    public static int indexScan() {
         int indexSelect = userInput.nextInt(); // used for Inventorysd
         return indexSelect;
     }

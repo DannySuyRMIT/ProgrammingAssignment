@@ -7,7 +7,7 @@ package data;
 public class gameWeaponItems extends gameItems {
     private int itemAtk;
 
-    public gameWeaponItems(String itemName, String toolTip, int itemQty, double itemCost, boolean canSell, int itemAtk) {
+    public gameWeaponItems(String itemName, String toolTip, int itemQty, int itemCost, boolean canSell, int itemAtk) {
         super(itemName,toolTip,itemQty, itemCost,"Weapon", canSell); // Obtains Parameters from gameItems
         this.itemAtk = itemAtk;
     }

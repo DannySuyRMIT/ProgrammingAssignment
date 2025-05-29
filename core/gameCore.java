@@ -14,6 +14,7 @@ public class gameCore {
 
     // Obtain Player Name
     public static String userName = userScanner.userScan();
+
     public static void gameLogic() {
         // Initialise Scanner :(
         userScanner userInput = new userScanner();
@@ -45,7 +46,7 @@ public class gameCore {
             else if (userChoice.equals("menu")) {
                 // Menu
                 while(loopCheck == false) {
-                    System.out.print("\n- - - Menu - - -\n1. [Navigate]   \n2. [Map]   \n3. [Inventory]   \n4. [Stats]   \n5. [Exit]\n");
+                    System.out.print("\n- - - Menu - - -\n1. [Navigate]\n2. [Map]\n3. [Inventory]\n4. [Stats]\n5. [Back]\n6. [Exit]\n");
                     userChoice = userScanner.userScan();
 
                     if (userChoice.equals("navigate") || userChoice.equals("1")) {
@@ -68,13 +69,16 @@ public class gameCore {
 
                     } else if (userChoice.equals("inventory") || userChoice.equals("3")) {
                         // put inventory methods here
-                        System.out.print("Display inventory");
                         gamePlayer.showInventory();
                         unlockMap();
                     } else if (userChoice.equals("stats") || userChoice.equals("4")) {
                         // put stats methods here
-                        System.out.printf("- - -%s- - -",userName);
-                    } else if (userChoice.equals("exit") || userChoice.equals("5")) {
+                        System.out.print("- - -Stats- - -\n");
+                        gamePlayer.playerStats();
+
+                    } else if (userChoice.equals("back") || userChoice.equals("5")) {
+                        loopCheck = true;
+                    } else if (userChoice.equals("exit") || userChoice.equals("6")) {
                         // exit
                         System.out.print("Quit W.");
                         System.exit(0);

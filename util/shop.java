@@ -4,32 +4,57 @@ import data.*;
 
 import java.util.ArrayList;
 
+
 /**@author Christian Rayos */
-/**@Ver 2.3               */
+/**@Ver 3.0               */
 /**@Date 26/05/25        */
 
 public class shop {
 
     // Initialise shopInventory
     private static ArrayList<gameItems> shopInventory = populateShopInventory();
+    private static ArrayList<gameItems> shopGambleInventory = populateShopInventory();
 
     public static ArrayList<gameItems> populateShopInventory() {
         shopInventory = new ArrayList<gameItems>();
         // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
         // Weapons
-        shopInventory.add(new gameWeaponItems("dagger","Mildly pointy. Inflicts Bleed.",1,2.5,true,2));
-        shopInventory.add(new gameWeaponItems("dull blade","Not so sharp... still better than nothing.",1,3.5,true,3));
-        shopInventory.add(new gameWeaponItems("not-so-dull blade","Decently sharpened. Good for a fight.",1,5.0,true, 5));
-        shopInventory.add(new gameWeaponItems("scam blade","Dull blade repainted...'are they trying to scam us? '",1,8.0,true,3));
+        shopInventory.add(new gameWeaponItems("dagger","Mildly pointy. Inflicts Bleed.",1,2,true,2));
+        shopInventory.add(new gameWeaponItems("dull blade","Not so sharp... still better than nothing.",1,3,true,3));
+        shopInventory.add(new gameWeaponItems("not-so-dull blade","Decently sharpened. Good for a fight.",1,5,true, 5));
+        shopInventory.add(new gameWeaponItems("scam blade","Dull blade repainted...'are they trying to scam us? '",1,8,true,3));
         // Armour
-        shopInventory.add(new gameArmourItems("dull steel helmet","A bit worn, but stops you from losing your head.",1,6.0,true,2));
-        shopInventory.add(new gameArmourItems("dull steel breastplate","Has some dents, but you'll live. Maybe.",1,12.0,true,3));
-        shopInventory.add(new gameArmourItems("dull steel leggings","Bit difficult to move in, but still protects.",1,8.0,true,2));
-        shopInventory.add(new gameArmourItems("dull steel boots","You might trip, so don't do that.",1,4.0,true,1));
+        shopInventory.add(new gameArmourItems("dull steel helmet","A bit worn, but stops you from losing your head.",1,6,true,2));
+        shopInventory.add(new gameArmourItems("dull steel breastplate","Has some dents, but you'll live. Maybe.",1,12,true,3));
+        shopInventory.add(new gameArmourItems("dull steel leggings","Bit difficult to move in, but still protects.",1,8,true,2));
+        shopInventory.add(new gameArmourItems("dull steel boots","You might trip, so don't do that.",1,4,true,1));
         // Utility
-        shopInventory.add(new gameItems("pebble","A small stone... might trip your foe",3,2.0,"Usable",false));
-        shopInventory.add(new gameItems("red potion","Wonders of alchemy... tastes bitter, but heals you. grants 15HP.",5,4.0,"Usable",true));
+        shopInventory.add(new gameItems("pebble","A small stone... might trip your foe",3,2,"Usable",false));
+        shopInventory.add(new gameItems("red potion","Wonders of alchemy... tastes bitter, but heals you. grants 15HP.",5,4,"Usable",true));
         return shopInventory;
+    }
+
+    public static ArrayList<gameItems> populateGambleInventory() {
+        shopGambleInventory = new ArrayList<gameItems>();
+        // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
+        // Weapons
+        shopGambleInventory.add(new gameWeaponItems("gilded dagger","Slightly more pointy, and more shiny. Inflicts Bleed II.",1,0,true,3));
+        shopGambleInventory.add(new gameWeaponItems("gilded blade","Sharpened enough not to damage the gold. You might get robbed when using this.",1,0,true,5));
+
+        // Utility
+        shopGambleInventory.add(new gameItems("gilded pebble","A shiny pebble with flair. Twice as likely to trip your foe.",5,0,"usable",false));
+        shopGambleInventory.add(new gameItems("shiny potion","better than red, but still just as bitter. Increases HP and ATK.",3,0,"usable",true));
+
+        // Fodder
+        shopGambleInventory.add(new gameItems("dirty dirt","Dirt. plain old dirt. if you sift it, you might find a nugget.",8,0,"useless",false));
+
+        return shopGambleInventory;
+    }
+
+    public static void viewShopItems() {
+        for (int i = 0; i < shopInventory.size(); i++) {
+            System.out.println(" - "+shopInventory.get(i).toString());
+        }
     }
 
     public static void gameBuy () {
@@ -38,12 +63,13 @@ public class shop {
         System.out.printf("Available spirit coins: $%d\n",spiritCoins); //Place playerCoin here
         System.out.print("- - -Items for sale- - -\n");
         viewShopItems();
+        System.out.print("\nPlease select item by writing its name in full\n('pebble' or 'dull blade')\n");
 
         if (gameCore.isMapUnlocked() == false) { // Check if map has been unlocked, and if not, display option.
             System.out.print("\nIt seems you can also purchase the following:\n");
             System.out.print("map $5.00\n");
-
         }
+        System.out.print("- - - - - - - - - - - -\n");
         itemPurchase();
     }
 
@@ -53,24 +79,42 @@ public class shop {
         if (isEmpty = false) {
 
         } else {
-            System.out.print("You have nothing to sell.");
+            System.out.print("You have nothing to sell.\nSelect something else.\n");
+            System.out.print("\n    [sell] [buy] [gamble] [exit]  \n");
+            String userChoice = userScanner.userScan();
+
+            if (userChoice.equals("sell")) {
+                shopSell();
+            } else if (userChoice.equals("buy")) {
+                gameBuy();
+            } else if (userChoice.equals("gamble")) {
+                gameBuy();
+            }else if(userChoice.equals("exit")) {
+                System.out.print("\nGoodbye. See you next time!");
+            } else {
+                System.out.print("\nYour intentions aren't understood. You are kicked out for now...\n");
+            }
         }
 
+    }
 
-
+    public static void shopGamble() {
+        // Do later
     }
 
     public static void shopDialogue() {
         System.out.print("welcome to shop\n");
         System.out.print("Would you like to buy some wares? or... perhaps\n you'd like to sell some and try gambling...?\n");
-        System.out.print("[sell]    [buy]    [exit]\n");
+        System.out.print("\n   [sell] [buy] [gamble] [exit]  \n");
         String userChoice = userScanner.userScan();
 
         if (userChoice.equals("sell")) {
             shopSell();
         } else if (userChoice.equals("buy")) {
             gameBuy();
-        } else if(userChoice.equals("exit")) {
+        } else if (userChoice.equals("gamble")) {
+            gameBuy();
+        }else if(userChoice.equals("exit")) {
             System.out.print("\nGoodbye. See you next time!");
         } else {
             System.out.print("\nYour intentions aren't understood. You are kicked out for now...\n");
@@ -78,11 +122,12 @@ public class shop {
     }
 
     public static void itemPurchase() {
+
         int spiritCoins = gamePlayer.getPlayerSpiritCoins();
         String userChoice = userScanner.userScan();
         if (gameCore.isMapUnlocked() == false && userChoice.equals("map")) {
-            if (spiritCoins >= 5.0) {
-                spiritCoins -=  5.0;
+            if (spiritCoins >= 5) {
+                spiritCoins -=  5;
                 gameCore.unlockMap();
             } else {
                 System.out.print("You do not have enough spirit Coins\n");
@@ -93,7 +138,7 @@ public class shop {
         } else if (!userChoice.equals("map")) {
             String itemSelect = userChoice;
             boolean itemFound = false; //flags whether item is found
-            double shopCost = 0.00; // Assigns purchase cost to 0 whenever shop is visited
+            int shopCost = 0; // Assigns purchase cost to 0 whenever shop is visited
             int index = 0;
             int itemQty = 0;
             int inventoryIndex = 0; // Checks to see if item exists within Inventory. Should it exist, +1 to qty.
@@ -109,29 +154,29 @@ public class shop {
             }
 
             if (itemFound && spiritCoins >= shopCost && itemQty > 0) {
-                System.out.printf("\n%s costs: $%.2f. You have $%.02f. Purchase?\n[Y] / [N]\n", itemSelect, shopCost, spiritCoins);
-                userChoice = userScanner.userScan();
+                System.out.printf("\n%s costs: $%d. You have $%d. Purchase?\n[Y] / [N]\n", itemSelect, shopCost, spiritCoins);
+                userChoice = userScanner.userScan().trim();
 
                 switch (userChoice) {
                     case "y":
                         System.out.println("Item Purchased.\n");
                         // Search inventory || Section commented out until Connected with Inventory
-//                    for (int i = 0; i < inventory.size(); i++) {
-//                         if (itemSelect.equals(inventory.get(i).getItemName())) ;
-//                             inventoryIndex = 1;
-//                             inventoryFlag = true;
-//                        }
-//                    }
-//                    if(inventoryFlag == true) { // Runs following only when Item exists within Inventory. +1 to item.
-//                        inventory.get(inventoryIndex).setQty(inventory.get(inventoryIndex).getQty()+1);
-//                    } else { // should item not exist, add to inventory
-//                        inventory.add(new gameItems(itemSelect, ,1, shopCost));
-//                    }
-//                    spiritCoins -= shopCost;
-//                    shopInventory.get(index).setItemQty(shopInventory.get(index).getItemQty()-1);
+
+                        for (int i = 0; i < gamePlayer.getPlayerInventory().size(); i++) {
+                            if (itemSelect.equals(gamePlayer.getPlayerInventory().get(i).getItemName())) {
+                                inventoryIndex = 1;
+                                inventoryFlag = true;
+                            }
+                        }
+
+                        if (inventoryFlag == true) { // Runs following only when Item exists within Inventory. +1 to item.
+                            gamePlayer.getPlayerInventory().get(inventoryIndex).setItemQty(gamePlayer.getPlayerInventory().get(inventoryIndex).getItemQty() + 1);
+                        } else { // should item not exist, add to inventory
+                            gamePlayer.getPlayerInventory().add(new gameItems(shopInventory.get(index)));
+                        }
+                        spiritCoins -= shopCost;
+                        shopInventory.get(index).setItemQty(shopInventory.get(index).getItemQty() - 1);
                         break;
-
-
                     case "n":
                         System.out.println("What a buzzkill... Go away.\n");
                         break;
@@ -147,34 +192,7 @@ public class shop {
             }
             System.out.print("Taking too long caused you to be kicked out for now...\n\n");
         }
-    }
 
-    private static ArrayList<gameItems> shopGambleInventory = populateGambleInventory();
-
-    public static ArrayList<gameItems> populateGambleInventory() {
-        shopGambleInventory = new ArrayList<gameItems>();
-        // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
-        // Weapons
-        shopGambleInventory.add(new gameWeaponItems("gilded dagger","Slightly more pointy, and more shiny. Inflicts Bleed II.",1,0,true,3));
-        shopGambleInventory.add(new gameWeaponItems("gilded blade","Sharpened enough not to damage the gold. You might get robbed when using this.",1,0,true,5));
-
-        // Utility
-        shopGambleInventory.add(new gameItems("gilded pebble","A shiny pebble with flair. Twice as likely to trip your foe.",1,0,"usable",false));
-        shopGambleInventory.add(new gameItems("shiny potion","better than red, but still just as bitter. Increases HP and ATK.",1,0,"usable",true));
-
-        // Fodder
-        shopGambleInventory.add(new gameItems("dirty dirt","Dirt. plain old dirt. if you sift it, you might find a nugget.",1,0,"useless",false));
-
-        return shopGambleInventory;
-
-    }
-    public static void shopGamble() {
-    // Do later
-    }
-
-    public static void viewShopItems() {
-        for (int i = 0; i < shopInventory.size(); i++) {
-            System.out.println("["+i+"]"+shopInventory.get(i).toString());
-        }
     }
 }
+

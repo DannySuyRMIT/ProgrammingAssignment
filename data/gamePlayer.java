@@ -1,36 +1,30 @@
 package data;
 import core.gameCore;
+import java.util.ArrayList;
 
 /**@author Danny Suy       */
 /**@Editor Christian Rayos*/
-/**@Ver 1.5              */
+/**@Ver 2.0              */
 /**@Date 28/05/25       */
 
 public class gamePlayer {
-    private gameCore gameCore;
     String userName = gameCore.getUserName();
-    int playerHealth;
-    int playerAttackPower;
+    static int playerHealth;
+    static int playerAttackPower;
+    static int playerDefencePower;
     static int playerSpiritCoins = 20;
-    static String item1 = "";
-    static String item2 = "";
-    static String item3 = "";
-    static String item4 = "";
-    static String item5 = "";
-    static String item6 = "";
-    static String item7 = "";
-    static String item8 = "";
 
-    // Initialise playerInventory Array
-    private static String[] playerInventory = new String[8];
+    // Initialise playerInventory Inventory
+    private static final ArrayList<gameItems> playerInventory = new ArrayList<gameItems>();
 
     // Initialise isEmpty check
     static boolean isEmpty;
     // Creating the player
-    public gamePlayer(String userName, int playerHealth, int playerAttackPower) {
+    public gamePlayer(String userName, int playerHealth, int playerAttackPower, int playerDefencePower ) {
         this.userName = userName;
         this.playerHealth = playerHealth;
         this.playerAttackPower = playerAttackPower;
+        this.playerDefencePower = playerDefencePower;
     }
 
     // Attack Power
@@ -52,45 +46,34 @@ public class gamePlayer {
     public boolean isAlive() {
         return playerHealth > 0;
     }
+
     //add an item to the players inventory when dropped or bought
-    public void addItem(String itemName) {
-        if (item1.isEmpty()) {
-            item1 = itemName;
-        } else if (item2.isEmpty()) {
-            item2 = itemName;
+    public void addItem(gameItems itemName) {
+        if (playerInventory.size() < 8) {
+            playerInventory.add(itemName);
         } else {
             System.out.println("Inventory full!");
             return;
         }
         System.out.println("You received: " + itemName);
     }
-    //Creating an inventory for the player
+    // Remove
+    public void removeItem(gameItems gameItems) {
+        playerInventory.remove(gameItems);
+    }
+    // Creating an inventory for the player
     public static void showInventory() {
-        System.out.println("\n--- Inventory ---");
-        System.out.println("Coins: " + playerSpiritCoins);
+        System.out.printf("\n--- Inventory ---\n");
+        System.out.printf("Coins: %d\n",playerSpiritCoins);
 
         // Fill player inventory with placeholders
-        playerInventory[0] = item1;
-        playerInventory[1] = item2;
-        playerInventory[2] = item3;
-        playerInventory[3] = item4;
-        playerInventory[4] = item5;
-        playerInventory[5] = item6;
-        playerInventory[6] = item7;
-        playerInventory[7] = item8;
 
-        isEmpty = true;
-        for (String item : playerInventory) {
-            if (!item.isEmpty()) {
-                System.out.println("- " + item);
-                isEmpty = false;
-            }
+        if (playerInventory.isEmpty() == false) {
+            System.out.println(playerInventory);
+        } else {
+            System.out.print("Inventory currently empty\n");
         }
 
-        if (isEmpty) {
-            System.out.println("Inventory is empty.");
-
-        }
 
     }
     public static int getPlayerSpiritCoins() {
@@ -99,5 +82,14 @@ public class gamePlayer {
     public static boolean getIsEmpty() {
         return isEmpty;
     }
+
+    public static ArrayList<gameItems> getPlayerInventory() {
+        return playerInventory;
+    }
+
+    public static void playerStats() {
+        System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d",playerAttackPower, playerHealth, playerDefencePower);
+    }
+
 }
 

@@ -1,25 +1,36 @@
 package data;
 
 /**@author Christian Rayos */
-/**@Ver 1.2               */
+/**@Ver 1.3               */
 /**@Date 25/05/25        */
 
 public class gameItems {
     private String itemName;
-    private final String toolTip;
+    private String toolTip;
     private int itemQty;
-    private double itemCost;
-    private final String itemType;
+    private int itemCost;
+    private String itemType;
     private boolean canSell = true;
 
 
-    public gameItems(String itemName, String toolTip, int itemQty, double itemCost, String itemType, boolean canSell) {
+    public gameItems(String itemName, String toolTip, int itemQty, int itemCost, String itemType, boolean canSell) {
         this.itemName = itemName;
         this.toolTip = toolTip;
         this.itemQty = itemQty;
         this.itemCost = itemCost;
         this.itemType = itemType;
         this.canSell = canSell;
+
+    }
+
+    // Copies index contents, and pasts it into another parameter field
+    public gameItems(gameItems shopToBackpack) {
+        this.itemName = shopToBackpack.getItemName();
+        this.toolTip = shopToBackpack.getToolTip();
+        this.itemQty = shopToBackpack.getItemQty();
+        this.itemCost = shopToBackpack.getItemCost();
+        this.itemType = shopToBackpack.getItemType();
+        this.canSell = shopToBackpack.getCanSell();
 
     }
 
@@ -35,7 +46,7 @@ public class gameItems {
         return this.itemQty;
     }
 
-    public double getItemCost() {
+    public int getItemCost() {
         return this.itemCost;
     }
 
@@ -55,12 +66,12 @@ public class gameItems {
         this.itemQty = itemQty;
     }
 
-    public void setItemCost(double itemCost) {
+    public void setItemCost(int itemCost) {
         this.itemCost = itemCost;
     }
 
     public String toString() {
-        return String.format("%dX\t%s\t$%.2f", this.itemQty, this.itemName, this.itemCost);
+        return String.format("%dX\t%s\t$%d", this.itemQty, this.itemName, this.itemCost);
     }
 }
 
