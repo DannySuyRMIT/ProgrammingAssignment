@@ -3,6 +3,7 @@ import core.*;
 import data.*;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**@author Christian Rayos */
@@ -13,7 +14,7 @@ public class shop {
 
     // Initialise shopInventory
     private static ArrayList<gameItems> shopInventory = populateShopInventory();
-    private static ArrayList<gameItems> shopGambleInventory = populateShopInventory();
+    private static ArrayList<gameItems> shopGambleInventory = populateGambleInventory();
 
     public static ArrayList<gameItems> populateShopInventory() {
         shopInventory = new ArrayList<gameItems>();
@@ -74,9 +75,10 @@ public class shop {
     }
 
     public static void shopSell() {
-        System.out.print("Select item to sell\n");
         boolean isEmpty = gamePlayer.getIsEmpty();
         if (isEmpty = false) {
+            System.out.print("Select item to sell\n");
+            gamePlayer.getPlayerInventory();
 
         } else {
             System.out.print("You have nothing to sell.\nSelect something else.\n");
@@ -88,7 +90,7 @@ public class shop {
             } else if (userChoice.equals("buy")) {
                 gameBuy();
             } else if (userChoice.equals("gamble")) {
-                gameBuy();
+                shopGamble();
             }else if(userChoice.equals("exit")) {
                 System.out.print("\nGoodbye. See you next time!");
             } else {
@@ -99,12 +101,36 @@ public class shop {
     }
 
     public static void shopGamble() {
-        // Do later
+
+        int spiritCoins = gamePlayer.getPlayerSpiritCoins();
+        System.out.print("Get a random item that might be useful for 5 coins...\n [y]   [n]\n");
+        String userChoice = userScanner.userScan();
+        if (userChoice.equals("y")) {
+            if (spiritCoins > 5) {
+                System.out.print("No refunds!\n");
+                spiritCoins -= 5;
+                gamePlayer.setPlayerSpiritCoins(spiritCoins);
+
+                Random gambleNumber = new Random();
+
+                // Generate random index to pick item
+                int chosenRandomIndex = gambleNumber.nextInt(shopGambleInventory.size());
+                System.out.print("Item Obtained: \n"+shopGambleInventory.get(chosenRandomIndex));
+
+                //Provide to user
+                gamePlayer.getPlayerInventory().add(new gameItems(shopGambleInventory.get(chosenRandomIndex)));
+
+            }
+        } else if (userChoice.equals("n")) {
+            System.out.print("Why bother showing interest... if you won't go all in?\n");
+        } else {
+            System.out.print("The shop keeper was not happy. Kicked out for hesitation in the hobby.\n");
+        }
     }
 
     public static void shopDialogue() {
-        System.out.print("welcome to shop\n");
-        System.out.print("Would you like to buy some wares? or... perhaps\n you'd like to sell some and try gambling...?\n");
+        System.out.print("\n- - -welcome to shop- - -\n");
+        System.out.print("Shopkeeper provides you the following options.\nThey have a short temper, so be short and concise.\n");
         System.out.print("\n   [sell] [buy] [gamble] [exit]  \n");
         String userChoice = userScanner.userScan();
 
@@ -113,7 +139,7 @@ public class shop {
         } else if (userChoice.equals("buy")) {
             gameBuy();
         } else if (userChoice.equals("gamble")) {
-            gameBuy();
+            shopGamble();
         }else if(userChoice.equals("exit")) {
             System.out.print("\nGoodbye. See you next time!");
         } else {
@@ -175,6 +201,7 @@ public class shop {
                             gamePlayer.getPlayerInventory().add(new gameItems(shopInventory.get(index)));
                         }
                         spiritCoins -= shopCost;
+                        gamePlayer.setPlayerSpiritCoins(spiritCoins);
                         shopInventory.get(index).setItemQty(shopInventory.get(index).getItemQty() - 1);
                         break;
                     case "n":
@@ -189,8 +216,9 @@ public class shop {
                 System.out.println("Not enough coins... come back richer?");
             } else if (itemFound = false || itemQty == 0) {
                 System.out.print("item " + itemSelect + " not available.\n");
+            } else {
+                System.out.print("Taking too long caused you to be kicked out for now...\n\n");
             }
-            System.out.print("Taking too long caused you to be kicked out for now...\n\n");
         }
 
     }

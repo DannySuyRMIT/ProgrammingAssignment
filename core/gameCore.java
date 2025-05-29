@@ -54,9 +54,6 @@ public class gameCore {
                         System.out.print("navigate\n");
                         gameMap.gameNavigate();
                         // Provide options to go N, E, S, W
-                        // Temporary placement to test shop.
-//                        System.out.print("- -Shop tile located- - \n");
-//                        shop.shopDialogue();
                         loopCheck = true;
 
                     } else if (userChoice.equals("map") || userChoice.equals("2")) {
@@ -89,7 +86,6 @@ public class gameCore {
             } else { // Any responses that isn't "menu" or "interact" will prevent locationEntry from being printed again
                 locationEntryPrinted = true;
             }
-            //
 
         }
     } public static boolean isMapUnlocked() { // Provides status of mapUnlocked || True or False

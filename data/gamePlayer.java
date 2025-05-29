@@ -79,6 +79,10 @@ public class gamePlayer {
     public static int getPlayerSpiritCoins() {
         return playerSpiritCoins;
     }
+
+    public static void setPlayerSpiritCoins(int newPlayerSpiritCoins) {
+        playerSpiritCoins = newPlayerSpiritCoins;
+    }
     public static boolean getIsEmpty() {
         return isEmpty;
     }
@@ -87,9 +91,19 @@ public class gamePlayer {
         return playerInventory;
     }
 
+    public static void displayPlayerInventory() {
+        for (int i = 0; i < playerInventory.size(); i++) {
+            System.out.println(" - "+playerInventory.get(i).toString());
+        }
+    }
+
     public static void playerStats() {
         System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d",playerAttackPower, playerHealth, playerDefencePower);
     }
+
+//    public static void playerEquip() {
+//        if ();
+//    }
 
 }
 

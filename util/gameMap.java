@@ -27,6 +27,7 @@ public class gameMap {
             {"1", "1", "C"},   // Cave
             {"1", "4", "B"},   // Bamboo Forest
             {"1", "5", "B*"},  // Blacksmith
+            {"3", "2", "IP" },  // Island Piers
             {"3", "3", "V"},   // Village
             {"3", "5", "S"},   // Spawn
             {"5", "1", "F"},   // Fogged Forest
@@ -48,6 +49,7 @@ public class gameMap {
             } else {
                 drawInferiorMap();
             }
+            successfulMove = false;
             System.out.print("Your move: ");
             String userChoice = userScanner.userScan().trim(); // removes any whitespace from.
 
@@ -58,7 +60,7 @@ public class gameMap {
             }
 
             movePlayer(userChoice);
-            if (successfulMove = true) {
+            if (successfulMove == true) {
                 break;
             }
         }
@@ -100,6 +102,7 @@ public class gameMap {
         System.out.println(" C   = Cave");
         System.out.println(" B   = Bamboo Forest");
         System.out.println(" B*  = Blacksmith");
+        System.out.println(" IP  = Island Piers");
         System.out.println(" V   = Village");
         System.out.println(" S   = Spawn");
         System.out.println(" F   = Fogged Forest");
@@ -186,6 +189,10 @@ public class gameMap {
 
     // Move the player around based on input
     public static void movePlayer(String direction) {
+
+        boolean hasBambooRaft = false;
+
+
         int[] loc = getCoordinates(currentLocation);
         int y = loc[0];
         int x = loc[1];
@@ -206,8 +213,13 @@ public class gameMap {
         }
 
         if (isRoom(y, x)) {
-            currentLocation = y * 100 + x;
-            successfulMove = true;
+
+            if (currentLocation == 302 && hasBambooRaft == false) {
+                System.out.print("User has nothing to travel on...\n Perhaps a raft is needed.\n");
+            } else {
+                currentLocation = y * 100 + x;
+                successfulMove = true;
+            }
         } else {
             System.out.println("You can't go that way!");
         }
