@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class gamePlayer {
     /**
-     * The User name.
+     * The Username.
      */
     String userName = gameCore.getUserName();
     /**
@@ -27,7 +27,7 @@ public class gamePlayer {
      */
     static int playerAttackPower = 3;
     /**
-     * The Player defence power.
+     * The Player defense power.
      */
     static int playerDefencePower = 1;
     /**
@@ -50,10 +50,10 @@ public class gamePlayer {
     /**
      * Instantiates a new Game player.
      *
-     * @param userName           the user name
+     * @param userName           the username
      * @param playerHealth       the player health
      * @param playerAttackPower  the player attack power
-     * @param playerDefencePower the player defence power
+     * @param playerDefencePower the player defense power
      */
 // Creating the player
     public gamePlayer(String userName, int playerHealth, int playerAttackPower, int playerDefencePower) {
@@ -150,7 +150,7 @@ public class gamePlayer {
 
 
     /**
-     * Is alive boolean.
+     * player is alive boolean.
      *
      * @return the boolean
      */
@@ -305,16 +305,16 @@ public class gamePlayer {
     }
 
     /**
-     * Gets player defence power.
+     * Gets player defense power.
      *
-     * @return the player defence power
+     * @return the player defense power
      */
     public static int getPlayerDefencePower() {
         return playerDefencePower;
     }
 
     /**
-     * Sets player defence power.
+     * Sets player defense power.
      *
      * @param DEF the def
      */

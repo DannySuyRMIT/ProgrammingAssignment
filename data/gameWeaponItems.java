@@ -20,7 +20,7 @@ public class gameWeaponItems extends gameItems implements gamePlayer.Equipable {
      * @param toolTip  the tool tip
      * @param itemQty  the item qty
      * @param itemCost the item cost
-     * @param canSell  the can sell
+     * @param canSell  item that can sell
      * @param itemAtk  the item atk
      */
     public gameWeaponItems (String itemName, String toolTip, int itemQty, int itemCost, boolean canSell, int itemAtk) {
@@ -39,9 +39,9 @@ public class gameWeaponItems extends gameItems implements gamePlayer.Equipable {
     }
 
     /**
-     * Gets item atk.
+     * Gets item attack.
      *
-     * @return the item atk
+     * @return the item attack
      */
     public int getItemAtk() { //
         return itemAtk;

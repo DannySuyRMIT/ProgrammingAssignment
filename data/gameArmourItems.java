@@ -21,7 +21,7 @@ public class gameArmourItems extends gameItems implements gamePlayer.Equipable {
      * @param itemQty  the item quantity
      * @param itemCost the item cost
      * @param canSell  the item can sell
-     * @param itemDef  the item def
+     * @param itemDef  the item defense
      */
     public gameArmourItems (String itemName, String toolTip, int itemQty, int itemCost, boolean canSell, int itemDef) {
         super(itemName, toolTip, itemQty, itemCost, "Armour", canSell); // Obtains parameters from gameItems
@@ -39,9 +39,9 @@ public class gameArmourItems extends gameItems implements gamePlayer.Equipable {
     }
 
     /**
-     * Gets item def.
+     * Gets item defense.
      *
-     * @return the item def
+     * @return the item defense
      */
     public int getItemDef() {
         return itemDef;
