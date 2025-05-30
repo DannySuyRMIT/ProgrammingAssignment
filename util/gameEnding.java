@@ -5,13 +5,13 @@ import core.gameCore;
 /**@Ver 1.1              */
 /**@Date 28/05/25       */
 
-public class gameEnding {
+public class gameEnding {                     // To create booleans that dont change.
     static boolean trueBadEnding;
     static boolean trueGoodEnding;
     static boolean goodEnding;
     static boolean badEnding;
 
-    public static void gameEnding() {
+    public static void gameEnding() {             // To determine which ending occurs based on data and what to print.
          badEnding = gameCore.isDeathOccurred();
          trueBadEnding = gameLocations.getHasTriggeredBadShrine();
          trueGoodEnding = gameLocations.getHasTriggeredGoodShrine();
