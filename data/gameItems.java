@@ -2,6 +2,9 @@ package data;
 
 /**@author Christian Rayos */
 /**@Ver 1.3               */
+
+import java.util.ArrayList;
+
 /**@Date 25/05/25        */
 
 public class gameItems {
@@ -9,8 +12,8 @@ public class gameItems {
     private String toolTip;
     private int itemQty;
     private int itemCost;
-    private String itemType;
-    private boolean canSell = true;
+    public String itemType;
+    public boolean canSell = true;
 
 
     public gameItems(String itemName, String toolTip, int itemQty, int itemCost, String itemType, boolean canSell) {
@@ -32,6 +35,19 @@ public class gameItems {
         this.itemType = shopToBackpack.getItemType();
         this.canSell = shopToBackpack.getCanSell();
 
+    }
+    private static ArrayList<gameItems> worldInventory = populateWorldInventory();
+
+    // Initialise world Items
+
+    public static ArrayList<gameItems> populateWorldInventory() {
+        worldInventory = new ArrayList<gameItems>();
+        // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
+        // Weapons
+        worldInventory.add(new gameWeaponItems("blessed katana","Very sharp. Will easily down a foe",1,0,true,10));
+        worldInventory.add(new gameArmourItems("pendant","Seems to be embued with some holy energy. Will weaken enemy atk.",1,0,true,10));
+
+        return worldInventory; // can be obtained from gameLocations
     }
 
     public String getItemName() {

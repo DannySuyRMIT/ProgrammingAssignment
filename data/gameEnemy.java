@@ -7,9 +7,9 @@ import java.util.Random;
 /**@Date 26/05/25     */
 
 public class gameEnemy {
-    String entityName;
-    int entityHealth;
-    int entityAttackPower;
+     String entityName;
+     int entityHealth;
+     int entityAttackPower;
 
     // Constructor
     public gameEnemy(String entityName, int entityHealth, int entityAttackPower) {
@@ -69,7 +69,7 @@ public class gameEnemy {
 
         public static void disableEnemyPool(String poolName) {
             switch (poolName) {
-                case "commonEnemies":
+                case "commonEnemies": // commonEnemies Remains open
                     break;
                 case "locationOneEnemies":
                     locationPoolOneState = false;
@@ -86,12 +86,13 @@ public class gameEnemy {
             }
         }
 
+
         //Grab random enemy from different category
         public static gameEnemy getRandomCommon() {
             return getRandomFromList(commonEnemies);
         }
 
-        public static gameEnemy getRandomOneLocation() {
+        public static gameEnemy getRandomOneLocation() { //
             return getRandomFromList(locationOneEnemies);
         }
 
@@ -130,4 +131,8 @@ public class gameEnemy {
         }
 
     }
+    public String toString() {
+        return String.format("\n Enemy: %s     \nCurrent HP: %d   |   Current ATK: %d", entityName, entityHealth, entityAttackPower);
+    }
+
 }

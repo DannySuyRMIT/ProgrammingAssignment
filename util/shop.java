@@ -10,6 +10,7 @@ import java.util.Random;
 /**@Ver 3.0               */
 /**@Date 26/05/25        */
 
+
 public class shop {
 
     // Initialise shopInventory
@@ -43,7 +44,7 @@ public class shop {
         shopGambleInventory = new ArrayList<gameItems>();
         // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
         // Weapons
-        shopGambleInventory.add(new gameWeaponItems("gilded dagger","Slightly more pointy, and more shiny. Inflicts Bleed II.",1,0,true,3));
+        shopGambleInventory.add(new gameWeaponItems("gilded dagger","Slightly more pointy, and more shiny.",1,0,true,3));
         shopGambleInventory.add(new gameWeaponItems("gilded blade","Sharpened enough not to damage the gold. You might get robbed when using this.",1,0,true,5));
 
         // Utility
@@ -79,10 +80,30 @@ public class shop {
     }
 
     public static void shopSell() {
-        boolean isEmpty = gamePlayer.getIsEmpty();
-        if (isEmpty = false) {
+        if (gamePlayer.getIsEmpty()) {
             System.out.print("Select item to sell\n");
-            gamePlayer.getPlayerInventory();
+
+            boolean inventoryFlag = false; // Used alongside inventoryIndex, only as a flag.
+
+            for (int i = 0; i < gamePlayer.getPlayerInventory().size(); i++) {
+                if ((gamePlayer.getPlayerInventory().get(i).getCanSell())) {
+                    System.out.print("["+i+"] "+gamePlayer.getPlayerInventory().get(i));
+
+                }
+            }
+            int inventoryIndex = userScanner.intScan();
+            if (gamePlayer.getPlayerInventory().get(inventoryIndex).getCanSell()) {
+               if (gamePlayer.getPlayerInventory().get(inventoryIndex).getItemType().equals("Weapon") || gamePlayer.getPlayerInventory().get(inventoryIndex).getItemType().equals("usable")) {
+                gamePlayer.removeItem(inventoryIndex);
+                int spiritCoins = 5 + gamePlayer.getPlayerSpiritCoins();
+                gamePlayer.setPlayerSpiritCoins(spiritCoins);
+               } else {
+                   gamePlayer.removeItem(inventoryIndex);
+                   int spiritCoins = 10 + gamePlayer.getPlayerSpiritCoins();
+                   gamePlayer.setPlayerSpiritCoins(spiritCoins);
+               }
+               System.out.printf("\nItem %s is not sellable...\n",gamePlayer.getPlayerInventory().get(inventoryIndex).getItemName());
+            }
 
         } else {
             System.out.print("You have nothing to sell.\nSelect something else.\n");

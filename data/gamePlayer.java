@@ -49,13 +49,20 @@ public class gamePlayer {
         }
     }
 
+    // Check if inventory empty
+    public void inventoryEmpty() {
+        if (isEmpty = playerInventory.size() < 1) {
+            setIsEmpty(isEmpty);
+        }
+    }
+
     //Check if player has more than 0 HP
     public boolean isAlive() {
         return playerHealth > 0;
     }
 
     //add an item to the players inventory when dropped or bought
-    public void addItem(gameItems gameItems) {
+    public static void addItem(gameItems gameItems) {
         if (playerInventory.size() < 8) {
             playerInventory.add(gameItems);
         } else {
@@ -65,20 +72,16 @@ public class gamePlayer {
         System.out.println("You received: " + gameItems);
     }
     // Remove
-    public void removeItem(gameItems gameItems) {
-        playerInventory.remove(gameItems);
+    public static void removeItem(int selectedIndex) {
+        playerInventory.remove(selectedIndex);
     }
+
     // Creating an inventory for the player
     public static void showInventory() {
         System.out.printf("\n--- Inventory ---\n");
         System.out.printf("Coins: %d\n",playerSpiritCoins);
-
-        // Fill player inventory with placeholders
-
-        if (playerInventory.isEmpty() == false) {
-            System.out.println(playerInventory);
-        } else {
-            System.out.print("Inventory currently empty\n");
+        for (int i = 0; i < playerInventory.size(); i++) {
+            System.out.print("["+i+"] "+playerInventory.get(i));
         }
 
 
@@ -94,18 +97,16 @@ public class gamePlayer {
         return isEmpty;
     }
 
+    public static void setIsEmpty(boolean emptyState) {
+        isEmpty = emptyState;
+    }
+
     public static ArrayList<gameItems> getPlayerInventory() {
         return playerInventory;
     }
 
-    public static void displayPlayerInventory() {
-        for (int i = 0; i < playerInventory.size(); i++) {
-            System.out.println(" - "+playerInventory.get(i).toString());
-        }
-    }
-
-    public void playerStats() {
-        System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d\n", playerAttackPower, playerHealth, playerDefencePower);
+    public static void playerStats() {
+        System.out.printf("Current ATK: %d  | Current HP: %d \nCurrent DEF: %d", playerAttackPower, playerHealth, playerDefencePower);
     }
 
     public static int getPlayerHealth() {

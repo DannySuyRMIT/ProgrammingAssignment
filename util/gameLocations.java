@@ -1,9 +1,11 @@
 package util;
 import core.gameCore;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import data.gameEnemy;
+import data.gameItems;
 import data.gamePlayer;
 /**@author Christian Rayos */
 /**@Ver 3.5               */
@@ -28,6 +30,7 @@ public class gameLocations {
     // Initialize
     static gamePlayer player1 = new gamePlayer(gameCore.getUserName(), gamePlayer.getPlayerHealth(),gamePlayer.getPlayerAttackPower(),gamePlayer.getPlayerDefencePower());
 
+
     public static void locationEntry() {
         int currentLocation = gameMap.getCurrentLocation();
 
@@ -49,7 +52,7 @@ public class gameLocations {
                 if (getHasBambooRaft() == true && gameEnemy.enemyPool.getLocationOnePoolState() == true) { // Guaranteed location fight.
                     gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomOneLocation();
 
-                    System.out.printf("\nEnemy encounter: %s", chosenEnemy);
+                    System.out.print("\nEnemy encounter!\n");
                     gameBattle.gameCombat(player1, chosenEnemy, "locationOneEnemies");
                 }
                 break;
@@ -77,7 +80,7 @@ public class gameLocations {
                 int spawnChance = percentChance.nextInt(100)+1;
                 if (spawnChance <= 10) { // Provide 10% to spawn
                     gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomCommon();
-                    System.out.printf("\nEnemy encounter: %s", chosenEnemy);
+                    System.out.print("\nEnemy encounter!\n");
                     gameBattle.gameCombat(player1, chosenEnemy, "CommonEnemies");
 
 
@@ -371,7 +374,7 @@ public class gameLocations {
                         // Obtain Boss Enemy
                         gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomBoss();
 
-                        System.out.printf("\nEnemy encounter: %s", chosenEnemy);
+                        System.out.print("\nEnemy encounter!\n");
                         // Simulate Battle
                         gameBattle.gameCombat(player1,chosenEnemy,"bossEnemies");
                                 
@@ -439,7 +442,7 @@ public class gameLocations {
                     } else if(getHasPendant() == false && userChoice.equals("pendant")) {
                         System.out.print("Seeing a pendent within the shine, you contemplate taking it... eventually you\ngrab it, due to its' calming presence.\n");
                         setHasPendant();
-                        System.out.print("\n  Pendant acquired.\n");
+                        gamePlayer.addItem(gameItems.populateWorldInventory().get(1));
                         validChoice = true;
 
                     } else if (userChoice.equals("back")) {
@@ -464,14 +467,13 @@ public class gameLocations {
                         validChoice = true;
                         System.out.print("\nSpotting a blade stabbed in the ground, You glance around before taking it\n. As soon as you grab it though, unwelcomed accompany arrives.\n");
                         setHasObtainedBlade();
+                        gamePlayer.addItem(gameItems.populateWorldInventory().get(0));
                         if (getHasObtainedBlade() == true && gameEnemy.enemyPool.getLocationTwoPoolState() == true) { // Guaranteed location fight.
                             gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomTwoLocation();
-                            System.out.printf("Enemy encountered: %s", chosenEnemy);
+                            System.out.print("\nEnemy encounter!\n");
                             gameBattle.gameCombat(player1, chosenEnemy, "locationTwoEnemies");
                         }
 
-
-                        System.out.print("\n  Katana acquired.\n");
                     } else if (userChoice.equals("back")) {
                         validChoice = true;
                     }

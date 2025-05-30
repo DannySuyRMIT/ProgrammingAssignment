@@ -1,7 +1,6 @@
 package util;
 import core.gameCore;
-import data.gameEnemy;
-import data.gamePlayer;
+import data.*;
 import java.util.Random;
 
 /**@author Danny Suy  */
@@ -14,6 +13,13 @@ public class gameBattle {
 
         // Battle loop: Player and enemy take turns attacking
         while (player.isAlive() && enemy.isAlive()) {
+            //Print stats
+            System.out.print("\n<-- - - - -=entity=- - - - -->");
+            System.out.print(enemy);
+            System.out.print("\n\n");
+            gamePlayer.playerStats();
+            System.out.print("\n<-- - - - -=Player=- - - - -->\n");
+
             // Player's turn
             System.out.println("\nIt's your turn!");
             System.out.println("1. Attack");
@@ -34,6 +40,7 @@ public class gameBattle {
             // Check if the enemy is dead
             if (!enemy.isAlive()) {
                 System.out.println("\nYou defeated the enemy!");
+                userScanner.userScan();
                 gameEnemy.enemyPool.disableEnemyPool(poolType);
                 Random droppedChance = new Random();
 
