@@ -3,14 +3,23 @@ import core.gameCore;
 
 /**@author Faaz Ruheemaun  */
 /**@Editor Christian Rayos*/
+
+/**
+ * The type Game map.
+ *
+ * @Date 25 /05/25
+ */
 /**@Ver 2.1              */
-/**@Date 25/05/25       */
+
 
 public class gameMap {
 
     // Initialise
     private static boolean successfulMove = false;
-    // Start position is at Spawn (3,5)
+    /**
+     * The constant currentLocation.
+     */
+// Start position is at Spawn (3,5)
     public static int currentLocation = 305;
 
     // Valid room positions (y, x)
@@ -36,6 +45,9 @@ public class gameMap {
             {"1", "2", "R"}    // Ritual Area
     };
 
+    /**
+     * Game navigate.
+     */
     public static void gameNavigate() {
 
 
@@ -70,7 +82,10 @@ public class gameMap {
         }
     }
 
-    // Print out the map
+    /**
+     * Draw map.
+     */
+// Print out the map
     public static void drawMap() {
         int[] loc = getCoordinates(currentLocation);
         int playerY = loc[0];
@@ -117,7 +132,10 @@ public class gameMap {
         System.out.println(" -   = Inaccessible\n");
     }
 
-    // Display Inferior map
+    /**
+     * Draw inferior map.
+     */
+// Display Inferior map
     public static void drawInferiorMap() {
         int[] loc = getCoordinates(currentLocation);
         int playerY = loc[0];
@@ -159,7 +177,13 @@ public class gameMap {
     }
 
 
-    // Get Y and X from location integer (e.g., 305 => [3, 5])
+    /**
+     * Get coordinates int [ ].
+     *
+     * @param loc the loc
+     * @return the int [ ]
+     */
+// Get Y and X from location integer (e.g., 305 => [3, 5])
     public static int[] getCoordinates(int loc) {
         int y = loc / 100;
         int x = loc % 100;
@@ -171,7 +195,14 @@ public class gameMap {
         return String.format("%-3s", label);
     }
 
-    // Check if they are walkable room
+    /**
+     * Is room boolean.
+     *
+     * @param y the y
+     * @param x the x
+     * @return the boolean
+     */
+// Check if they are walkable room
     public static boolean isRoom(int y, int x) {
         for (int[] room : ROOM_LOCATIONS) {
             if (room[0] == y && room[1] == x) {
@@ -181,7 +212,14 @@ public class gameMap {
         return false;
     }
 
-    // get LABEL for a special room
+    /**
+     * Gets label.
+     *
+     * @param y the y
+     * @param x the x
+     * @return the label
+     */
+// get LABEL for a special room
     public static String getLabel(int y, int x) {
         for (String[] label : LABELS) {
             if (Integer.parseInt(label[0]) == y && Integer.parseInt(label[1]) == x) {
@@ -191,7 +229,12 @@ public class gameMap {
         return "O"; // Default label for normal room / pathways you can access visually.
     }
 
-    // Move the player around based on input
+    /**
+     * Move player.
+     *
+     * @param direction the direction
+     */
+// Move the player around based on input
     public static void movePlayer(String direction) {
 
 
@@ -232,6 +275,12 @@ public class gameMap {
             System.out.println("You can't go that way!");
         }
     }
+
+    /**
+     * Gets current location.
+     *
+     * @return the current location
+     */
     public static int getCurrentLocation() { // Obtain players' current location
         return currentLocation;
     }

@@ -2,11 +2,26 @@ package util;
 import java.util.Scanner;
 
 /**@author Christian Rayos */
+
+/**
+ * The type User scanner.
+ *
+ * @Date 25 /05/25
+ */
 /**@Ver 1.2               */
-/**@Date 25/05/25        */
+
 
 public class userScanner {
+    /**
+     * The User input.
+     */
     static Scanner userInput = new Scanner(System.in);
+
+    /**
+     * User scan string.
+     *
+     * @return the string
+     */
     public static String userScan() {
 
         // obtain and return
@@ -14,6 +29,11 @@ public class userScanner {
         return userChoice;
     }
 
+    /**
+     * Int scan int.
+     *
+     * @return the int
+     */
     public static int intScan() {
         int indexSelect = 0; // used for Integer usage
 

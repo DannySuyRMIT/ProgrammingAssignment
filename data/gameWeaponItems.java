@@ -1,12 +1,28 @@
 package data;
 
 /**@author Christian Rayos */
+
+/**
+ * The type Game weapon items.
+ *
+ * @Date 27 /05/25
+ */
 /**@Ver 1.2               */
-/**@Date 27/05/25        */
+
 
 public class gameWeaponItems extends gameItems implements gamePlayer.Equipable {
     private int itemAtk;
 
+    /**
+     * Instantiates a new Game weapon items.
+     *
+     * @param itemName the item name
+     * @param toolTip  the tool tip
+     * @param itemQty  the item qty
+     * @param itemCost the item cost
+     * @param canSell  the can sell
+     * @param itemAtk  the item atk
+     */
     public gameWeaponItems (String itemName, String toolTip, int itemQty, int itemCost, boolean canSell, int itemAtk) {
         super(itemName, toolTip, itemQty, itemCost, "Armour", canSell); // Obtains Parameters from gameItems
         this.itemAtk = itemAtk;
@@ -22,6 +38,11 @@ public class gameWeaponItems extends gameItems implements gamePlayer.Equipable {
         return new gameWeaponItems(getItemName(),getToolTip(),getItemQty(),getItemCost(),getCanSell(),getItemAtk());
     }
 
+    /**
+     * Gets item atk.
+     *
+     * @return the item atk
+     */
     public int getItemAtk() { //
         return itemAtk;
     }

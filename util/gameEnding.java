@@ -2,15 +2,36 @@ package util;
 import core.gameCore;
 
 /**@author Faaz Ruheemaun  */
+
+/**
+ * The type Game ending.
+ *
+ * @Date 28 /05/25
+ */
 /**@Ver 1.1              */
-/**@Date 28/05/25       */
+
 
 public class gameEnding {                     // To create booleans that dont change.
+    /**
+     * The True bad ending.
+     */
     static boolean trueBadEnding;
+    /**
+     * The True good ending.
+     */
     static boolean trueGoodEnding;
+    /**
+     * The Good ending.
+     */
     static boolean goodEnding;
+    /**
+     * The Bad ending.
+     */
     static boolean badEnding;
 
+    /**
+     * Game ending.
+     */
     public static void gameEnding() {             // To determine which ending occurs based on data and what to print.
          badEnding = gameCore.isDeathOccurred();
          trueBadEnding = gameLocations.getHasTriggeredBadShrine();

@@ -7,8 +7,13 @@ import java.util.Random;
 
 
 /**@author Christian Rayos */
+
+/**
+ * The type Shop.
+ *
+ * @Date 26 /05/25
+ */
 /**@Ver 3.0               */
-/**@Date 26/05/25        */
 
 
 public class shop {
@@ -18,6 +23,11 @@ public class shop {
     private static ArrayList<gameItems> shopGambleInventory = populateGambleInventory();
     private static ArrayList<gameItems> shopInventory = populateShopInventory();
 
+    /**
+     * Populate shop inventory array list.
+     *
+     * @return the array list
+     */
     public static ArrayList<gameItems> populateShopInventory() {
         shopInventory = new ArrayList<gameItems>();
         // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
@@ -38,6 +48,7 @@ public class shop {
     }
 
     /**
+     * Populate gamble inventory array list.
      *
      * @return returns Contents of shopGambleArray
      */
@@ -58,12 +69,18 @@ public class shop {
         return shopGambleInventory;
     }
 
+    /**
+     * View shop items.
+     */
     public static void viewShopItems() {
         for (int i = 0; i < shopInventory.size(); i++) {
             System.out.println(" - "+shopInventory.get(i).toString());
         }
     }
 
+    /**
+     * Game buy.
+     */
     public static void gameBuy () {
         int spiritCoins = gamePlayer.getPlayerSpiritCoins();
 
@@ -80,6 +97,9 @@ public class shop {
         itemPurchase();
     }
 
+    /**
+     * Shop sell.
+     */
     public static void shopSell() {
         if (gamePlayer.getIsEmpty()) {
             System.out.print("Select item to sell\n");
@@ -126,6 +146,9 @@ public class shop {
 
     }
 
+    /**
+     * Shop gamble.
+     */
     public static void shopGamble() {
 
         int spiritCoins = gamePlayer.getPlayerSpiritCoins();
@@ -154,6 +177,9 @@ public class shop {
         }
     }
 
+    /**
+     * Shop dialogue.
+     */
     public static void shopDialogue() {
         System.out.print("\n- - -welcome to shop- - -\n");
         System.out.print("Shopkeeper provides you the following options.\nThey have a short temper, so be short and concise.\n");
@@ -173,6 +199,9 @@ public class shop {
         }
     }
 
+    /**
+     * Item purchase.
+     */
     public static void itemPurchase() {
 
         int spiritCoins = gamePlayer.getPlayerSpiritCoins();

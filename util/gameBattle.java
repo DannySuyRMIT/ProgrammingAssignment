@@ -6,11 +6,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**@author Danny Suy  */
+
+/**
+ * The type Game battle.
+ *
+ * @Date 29 /05/25
+ */
 /**@Ver 1.4           */
-/**@Date 29/05/25     */
 
 
 public class gameBattle {
+    /**
+     * Game combat.
+     *
+     * @param player   the player
+     * @param enemy    the enemy
+     * @param poolType the pool type
+     */
     public static void gameCombat(gamePlayer player, gameEnemy enemy, String poolType) {
 
         // Battle loop: Player and enemy take turns attacking

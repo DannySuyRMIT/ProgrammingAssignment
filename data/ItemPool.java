@@ -2,12 +2,21 @@ package data;
 
 import java.util.ArrayList;
 
+
+/**
+ * The type Item pool.
+ */
 public class ItemPool {
 
     private static ArrayList<gameItems> worldInventory = populateWorldInventory();
 
     // Initialise world Items
 
+    /**
+     * Populate world inventory array list.
+     *
+     * @return the array list
+     */
     public static ArrayList<gameItems> populateWorldInventory() {
         worldInventory = new ArrayList<gameItems>();
         // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef
@@ -23,6 +32,11 @@ public class ItemPool {
     // Initialise dropInventory
     private static ArrayList<gameItems> dropInventory = populatedropField();
 
+    /**
+     * Populatedrop field array list.
+     *
+     * @return the array list
+     */
     public static ArrayList<gameItems> populatedropField() {
         dropInventory = new ArrayList<gameItems>();
         // Format                       itemName [Name]   toolTip [Description]       itemQTY [Amount] itemCost [Cost] itemType [Type] canSell [Sellable] + itemAtk / itemDef

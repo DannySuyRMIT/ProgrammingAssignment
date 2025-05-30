@@ -8,32 +8,89 @@ import data.ItemPool;
 import data.gameEnemy;
 import data.gamePlayer;
 /**@author Christian Rayos */
+
+/**
+ * The type Game locations.
+ *
+ * @Date 27 /05/25
+ */
 /**@Ver 3.5               */
-/**@Date 27/05/25        */
+
 
 public class gameLocations {
+    /**
+     * The Has bamboo wood.
+     */
     static boolean hasBambooWood = false;
+    /**
+     * The Has bamboo raft.
+     */
     static boolean hasBambooRaft = false;
+    /**
+     * The Has talisman.
+     */
     static boolean hasTalisman = false;
+    /**
+     * The Has spirit orb.
+     */
     static boolean hasSpiritOrb = false;
+    /**
+     * The Has triggered good shrine.
+     */
     static boolean hasTriggeredGoodShrine = false;
+    /**
+     * The Has triggered bad shrine.
+     */
     static boolean hasTriggeredBadShrine = false;
+    /**
+     * The Has triggered shrine.
+     */
     static boolean hasTriggeredShrine = false;
+    /**
+     * The Has triggered quest.
+     */
     static boolean hasTriggeredQuest = false;
+    /**
+     * The Has first interact.
+     */
     static boolean hasFirstInteract = false;
+    /**
+     * The Has obtained armour.
+     */
     static boolean hasObtainedArmour = false;
+    /**
+     * The Has obtained blade.
+     */
     static boolean hasObtainedBlade = false;
+    /**
+     * The Ending choice.
+     */
     static boolean endingChoice = false;
+    /**
+     * The Has read sign.
+     */
     static boolean hasReadSign = false;
+    /**
+     * The Has pendant.
+     */
     static boolean hasPendant = false;
 
-    // Initialize
+    /**
+     * The constant player1.
+     */
+// Initialize
     static gamePlayer player1 = new gamePlayer(gameCore.getUserName(), gamePlayer.getPlayerHealth(),gamePlayer.getPlayerAttackPower(),gamePlayer.getPlayerDefencePower());
 
+    /**
+     * Item initialize.
+     */
     public static void itemInitialize() {
         player1.equipItemByName(userScanner.userScan());
     }
 
+    /**
+     * Location entry.
+     */
     public static void locationEntry() {
         int currentLocation = gameMap.getCurrentLocation();
 
@@ -93,6 +150,9 @@ public class gameLocations {
         }
     }
 
+    /**
+     * Location interact.
+     */
     public static void locationInteract() {
         int currentLocation = gameMap.getCurrentLocation();
         String userChoice;
@@ -489,105 +549,210 @@ public class gameLocations {
         }
     }
 
+    /**
+     * Gets has bamboo raft.
+     *
+     * @return the has bamboo raft
+     */
     public static boolean getHasBambooRaft() {
         return hasBambooRaft;
     }
 
+    /**
+     * Sets has bamboo raft.
+     */
     public static void setHasBambooRaft() {
         hasBambooRaft = true;
     }
 
+    /**
+     * Gets has bamboo wood.
+     *
+     * @return the has bamboo wood
+     */
     public static boolean getHasBambooWood() {
         return hasBambooWood;
     }
 
+    /**
+     * Sets has bamboo wood.
+     */
     public static void setHasBambooWood() {
         hasBambooWood = true;
     }
 
+    /**
+     * Gets has talisman.
+     *
+     * @return the has talisman
+     */
     public static boolean getHasTalisman() {
         return hasTalisman;
     }
 
+    /**
+     * Sets has talisman.
+     */
     public static void setHasTalisman() {
         hasTalisman = true;
     }
 
+    /**
+     * Gets has spirit orb.
+     *
+     * @return the has spirit orb
+     */
     public static boolean getHasSpiritOrb() {
         return hasSpiritOrb;
     }
 
+    /**
+     * Sets has spirit orb.
+     */
     public static void setHasSpiritOrb() {
         hasSpiritOrb = true;
     }
 
+    /**
+     * Gets has triggered good shrine.
+     *
+     * @return the has triggered good shrine
+     */
     public static boolean getHasTriggeredGoodShrine() {
         return hasTriggeredGoodShrine;
     }
 
+    /**
+     * Sets has triggered good shrine.
+     */
     public static void setHasTriggeredGoodShrine() {
         hasTriggeredGoodShrine = true;
     }
 
+    /**
+     * Gets has triggered bad shrine.
+     *
+     * @return the has triggered bad shrine
+     */
     public static boolean getHasTriggeredBadShrine() {
         return hasTriggeredBadShrine;
     }
 
+    /**
+     * Sets has triggered bad shrine.
+     */
     public static void setHasTriggeredBadShrine() {
         hasTriggeredBadShrine = true;
     }
 
+    /**
+     * Gets has triggered quest.
+     *
+     * @return the has triggered quest
+     */
     public static boolean getHasTriggeredQuest() {
         return hasTriggeredQuest;
     }
 
+    /**
+     * Sets has triggered quest.
+     */
     public static void setHasTriggeredQuest() {
         hasTriggeredQuest = true;
     }
 
+    /**
+     * Gets first interact.
+     *
+     * @return the first interact
+     */
     public static boolean getFirstInteract() {
         return hasFirstInteract;
     }
+
+    /**
+     * Sets first interact.
+     */
     public static void setFirstInteract() {
         hasFirstInteract = true;
     }
 
+    /**
+     * Gets has obtained armour.
+     *
+     * @return the has obtained armour
+     */
     public static boolean getHasObtainedArmour() {
         return hasObtainedArmour;
     }
 
+    /**
+     * Sets has obtained armour.
+     */
     public static void setHasObtainedArmour() {
         hasObtainedArmour = true;
     }
 
+    /**
+     * Gets has obtained blade.
+     *
+     * @return the has obtained blade
+     */
     public static boolean getHasObtainedBlade() {
         return hasObtainedBlade;
     }
 
+    /**
+     * Sets has obtained blade.
+     */
     public static void setHasObtainedBlade() {
         hasObtainedBlade = true;
     }
 
+    /**
+     * Gets has read sign.
+     *
+     * @return the has read sign
+     */
     public static boolean getHasReadSign() {
         return hasReadSign;
     }
 
+    /**
+     * Sets has read sign.
+     */
     public static void setHasReadSign() {
         hasReadSign = true;
     }
 
+    /**
+     * Gets has pendant.
+     *
+     * @return the has pendant
+     */
     public static boolean getHasPendant() {
         return hasPendant;
     }
 
+    /**
+     * Sets has pendant.
+     */
     public static void setHasPendant() {
         hasPendant = true;
     }
 
+    /**
+     * Gets has triggered shrine.
+     *
+     * @return the has triggered shrine
+     */
     public static boolean getHasTriggeredShrine() {
         return hasTriggeredShrine;
     }
 
+    /**
+     * Sets has triggered shrine.
+     */
     public static void setHasTriggeredShrine() {
         hasTriggeredShrine = true;
     }
