@@ -1,5 +1,12 @@
 package data;
+/**@author Christian Rayos */
+/**@Ver 1.0              */
 
+/**
+ * The type Game items.
+ *
+ * @Date 25 /05/25
+ */
 /**
  * The type Game basic item.
  */

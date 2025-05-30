@@ -2,7 +2,7 @@ package data;
 import java.util.ArrayList;
 
 /**@author Christian Rayos */
-/**@Ver 1.4               */
+/**@Ver 2.0               */
 
 /**
  * The type Game items.

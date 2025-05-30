@@ -2,7 +2,14 @@ package data;
 
 import java.util.ArrayList;
 
+/**@author Christian Rayos */
+/**@Ver 1.0               */
 
+/**
+ * The type Game items.
+ *
+ * @Date 30 /05/25
+ */
 /**
  * The type Item pool.
  */

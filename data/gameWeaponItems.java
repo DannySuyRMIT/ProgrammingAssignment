@@ -7,7 +7,7 @@ package data;
  *
  * @Date 27 /05/25
  */
-/**@Ver 1.2               */
+/**@Ver 2.0               */
 
 
 public class gameWeaponItems extends gameItems implements gamePlayer.Equipable {
