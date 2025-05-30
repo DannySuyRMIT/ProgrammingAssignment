@@ -51,7 +51,7 @@ public class gameMap {
             }
             successfulMove = false;
             System.out.print("Your move: ");
-            String userChoice = userScanner.userScan().trim(); // removes any whitespace from.
+            String userChoice = userScanner.userScan().trim(); // trim is used to remove any whitespace from userChoice.
 
 
             if (userChoice.equals("exit")) {
@@ -76,7 +76,7 @@ public class gameMap {
         int playerY = loc[0];
         int playerX = loc[1];
 
-        // rowDivider for printing
+        // rowDivider for spacing and printing the border of the map.
         String rowDivider = "+-----+-----+-----+-----+-----+";
 
         System.out.println();
@@ -166,12 +166,12 @@ public class gameMap {
         return new int[]{y, x};
     }
 
-    // Center and pad labels to ensure 3-character width
+    // To make the LABELS 3-character width and to cause padding on the map.
     private static String formatLabel(String label) {
         return String.format("%-3s", label);
     }
 
-    // Check if position is a walkable room
+    // Check if they are walkable room
     public static boolean isRoom(int y, int x) {
         for (int[] room : ROOM_LOCATIONS) {
             if (room[0] == y && room[1] == x) {
@@ -181,14 +181,14 @@ public class gameMap {
         return false;
     }
 
-    // Get label for a special room
+    // get LABEL for a special room
     public static String getLabel(int y, int x) {
         for (String[] label : LABELS) {
             if (Integer.parseInt(label[0]) == y && Integer.parseInt(label[1]) == x) {
                 return label[2];
             }
         }
-        return "O"; // Default label for normal room
+        return "O"; // Default label for normal room / pathways you can access visually.
     }
 
     // Move the player around based on input
@@ -199,7 +199,7 @@ public class gameMap {
         int y = loc[0];
         int x = loc[1];
 
-        switch (direction) {
+        switch (direction) {      // These are switch cases for the potential directions the user can input for the player to move.
             case "go north" -> y++;
             case "go up"    -> y++;
             case "go south" -> y--;
@@ -215,7 +215,7 @@ public class gameMap {
         }
 
         if (isRoom(y, x)) {
-            if (currentLocation == 302 && gameLocations.getHasBambooRaft() == false) {
+            if (currentLocation == 302 && gameLocations.getHasBambooRaft() == false) {   // This is pretty much to check when the user is at that location the user has the bamboo raft. If the user doesnt have the bamboo raft then they cant move to that location and there prompted that they have nothing to travel on.
                 int temporaryCurrentLocation = y * 100 + x;
                 if (temporaryCurrentLocation == 301) {
                     System.out.print("User has nothing to travel on...\n Perhaps a raft is needed.\n");
