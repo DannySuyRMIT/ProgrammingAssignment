@@ -14,6 +14,9 @@ public class gamePlayer {
     static int playerDefencePower = 1;
     static int playerSpiritCoins = 0;
 
+    private static gameWeaponItems equippedWeapon;
+    private static gameArmourItems equippedArmour;
+
     // Initialise playerInventory Inventory
     private static final ArrayList<gameItems> playerInventory = new ArrayList<gameItems>();
 
@@ -25,6 +28,9 @@ public class gamePlayer {
         this.playerHealth = playerHealth;
         this.playerAttackPower = playerAttackPower;
         this.playerDefencePower = playerDefencePower;
+
+        this.equippedArmour = new gameArmourItems("None", "No armour equipped", 0, 0, false, 0);
+        this.equippedWeapon = new gameWeaponItems("None", "No weapon equipped", 0, 0, false, 0);
     }
 
     // Attack Power
@@ -42,18 +48,33 @@ public class gamePlayer {
         } else {
             damage -= playerDefencePower;
             playerHealth -= damage;
-            }
+        }
         if (playerHealth <= 0) {
             playerHealth = 0;
             System.out.println(userName + " is defeated!");
         }
     }
 
-    // Check if inventory empty
-    public void inventoryEmpty() {
-        if (isEmpty = playerInventory.size() < 1) {
-            setIsEmpty(isEmpty);
-        }
+    // Equip weapon
+    public void equipWeapon(gameWeaponItems weapon) {
+        System.out.println("Unequipped: " + equippedWeapon.getItemName());
+        playerAttackPower -= equippedWeapon.getItemAtk();
+
+        equippedWeapon = weapon;
+        playerAttackPower += weapon.getItemAtk();
+
+        System.out.println("Equipped weapon: " + weapon.getItemName());
+    }
+
+    // Equip armour
+    public void equipArmour(gameArmourItems armour) {
+        System.out.println("Unequipped: " + equippedArmour.getItemName());
+        playerDefencePower -= equippedArmour.getItemDef();
+
+        equippedArmour = armour;
+        playerDefencePower += armour.getItemDef();
+
+        System.out.println("Equipped armour: " + armour.getItemName());
     }
 
     //Check if player has more than 0 HP
@@ -62,7 +83,7 @@ public class gamePlayer {
     }
 
     //add an item to the players inventory when dropped or bought
-    public static void addItem(gameItems gameItems) {
+    public void addItem(gameItems gameItems) {
         if (playerInventory.size() < 8) {
             playerInventory.add(gameItems);
         } else {
@@ -72,20 +93,34 @@ public class gamePlayer {
         System.out.println("You received: " + gameItems);
     }
     // Remove
-    public static void removeItem(int selectedIndex) {
-        playerInventory.remove(selectedIndex);
+    public void removeItem(gameItems gameItems) {
+        playerInventory.remove(gameItems);
     }
 
+    public static void playerStat() {
+        System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d\n", playerAttackPower, playerHealth, playerDefencePower);
+        System.out.println("Equipped Weapon: " + equippedWeapon.getItemName() + " (ATK: " + equippedWeapon.getItemAtk() + ")");
+        System.out.println("Equipped Armour: " + equippedArmour.getItemName() + " (DEF: " + equippedArmour.getItemDef() + ")");
+    }
     // Creating an inventory for the player
     public static void showInventory() {
         System.out.printf("\n--- Inventory ---\n");
         System.out.printf("Coins: %d\n",playerSpiritCoins);
-        for (int i = 0; i < playerInventory.size(); i++) {
-            System.out.print("["+i+"] "+playerInventory.get(i));
+
+        // Fill player inventory with placeholders
+
+        if (playerInventory.isEmpty() == false) {
+            System.out.println(playerInventory);
+        } else {
+            System.out.print("Inventory currently empty\n");
         }
 
 
-    }
+
+
+
+
+   }
     public static int getPlayerSpiritCoins() {
         return playerSpiritCoins;
     }
@@ -97,16 +132,18 @@ public class gamePlayer {
         return isEmpty;
     }
 
-    public static void setIsEmpty(boolean emptyState) {
-        isEmpty = emptyState;
-    }
-
     public static ArrayList<gameItems> getPlayerInventory() {
         return playerInventory;
     }
 
-    public static void playerStats() {
-        System.out.printf("Current ATK: %d  | Current HP: %d \nCurrent DEF: %d", playerAttackPower, playerHealth, playerDefencePower);
+    public static void displayPlayerInventory() {
+        for (int i = 0; i < playerInventory.size(); i++) {
+            System.out.println(" - "+playerInventory.get(i).toString());
+        }
+    }
+
+    public void playerStats() {
+        System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d\n", playerAttackPower, playerHealth, playerDefencePower);
     }
 
     public static int getPlayerHealth() {
@@ -124,7 +161,6 @@ public class gamePlayer {
     public static void setPlayerAttackPower(int ATK) {
         playerAttackPower = ATK;
     }
-
     public static int getPlayerDefencePower() {
         return playerDefencePower;
     }
@@ -133,6 +169,4 @@ public class gamePlayer {
         playerDefencePower = DEF;
     }
 
-    private gameItems equippedWeapon = null;
 }
-
