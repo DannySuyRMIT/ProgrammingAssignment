@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class gamePlayer {
     String userName = gameCore.getUserName();
     static int playerHealth = 50;
-    static int playerAttackPower = 2;
+    static int playerAttackPower = 3;
     static int playerDefencePower = 1;
     static int playerSpiritCoins = 0;
 
@@ -75,6 +75,26 @@ public class gamePlayer {
         playerDefencePower += armour.getItemDef();
 
         System.out.println("Equipped armour: " + armour.getItemName());
+    }
+
+    public void equipWeaponByName(String itemName) {
+        for (gameItems item : playerInventory) {
+            if (item.getItemType().equals("Weapon") && item.getItemName().equalsIgnoreCase(itemName)) {
+                equipWeapon((gameWeaponItems) item); // Cast is still needed
+                return;
+            }
+        }
+        System.out.println("Weapon named '" + itemName + "' not found in inventory.");
+    }
+
+    public void equipArmourByName(String itemName) {
+        for (gameItems item : playerInventory) {
+            if (item.getItemType().equals("Armour") && item.getItemName().equalsIgnoreCase(itemName)) {
+                equipArmour((gameArmourItems) item); // Cast is still needed
+                return;
+            }
+        }
+        System.out.println("Armour named '" + itemName + "' not found in inventory.");
     }
 
     //Check if player has more than 0 HP
