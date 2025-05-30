@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**@author Danny Suy       */
 /**@Editor Christian Rayos*/
-/**@Ver 2.1              */
+/**@Ver 2.2              */
 /**@Date 28/05/25       */
 
 public class gamePlayer {
@@ -31,6 +31,7 @@ public class gamePlayer {
     public void attack(gameEnemy enemy) {
         System.out.println(userName + " attacks " + enemy.entityName + " for " + playerAttackPower + " damage!");
         enemy.entityHealth -= playerAttackPower;
+        System.out.println("You have " + playerHealth + "HP.");
     }
 
     // Take damage
@@ -131,5 +132,6 @@ public class gamePlayer {
         playerDefencePower = DEF;
     }
 
+    private gameItems equippedWeapon = null;
 }
 

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**@author Danny Suy  */
-/**@Ver 1.1           */
+/**@Ver 1.3           */
 /**@Date 26/05/25     */
 
 public class gameEnemy {
@@ -22,6 +22,7 @@ public class gameEnemy {
     public void attack(gamePlayer player) {
         System.out.println(entityName + " attacks " + player.userName + " for " + entityAttackPower + " damage!");
         player.takeDamage(entityAttackPower);
+        System.out.println(entityName + " have " + entityHealth + "HP.");
     }
 
     public boolean isAlive() {
