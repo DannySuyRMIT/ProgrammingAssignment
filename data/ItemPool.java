@@ -40,7 +40,7 @@ public class ItemPool {
     private static ArrayList<gameItems> dropInventory = populatedropField();
 
     /**
-     * Populatedrop field array list.
+     * Populate drop field array list.
      *
      * @return the array list
      */

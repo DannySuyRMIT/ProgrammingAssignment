@@ -19,23 +19,23 @@ import data.gamePlayer;
 
 public class gameLocations {
     /**
-     * The Has bamboo wood.
+     * User Has bamboo wood.
      */
     static boolean hasBambooWood = false;
     /**
-     * The Has bamboo raft.
+     * User Has bamboo raft.
      */
     static boolean hasBambooRaft = false;
     /**
-     * The Has talisman.
+     * User Has talisman.
      */
     static boolean hasTalisman = false;
     /**
-     * The Has spirit orb.
+     * User Has spirit orb.
      */
     static boolean hasSpiritOrb = false;
     /**
-     * The Has triggered good shrine.
+     * User Has triggered good shrine.
      */
     static boolean hasTriggeredGoodShrine = false;
     /**
@@ -43,23 +43,23 @@ public class gameLocations {
      */
     static boolean hasTriggeredBadShrine = false;
     /**
-     * The Has triggered shrine.
+     * User Has triggered shrine.
      */
     static boolean hasTriggeredShrine = false;
     /**
-     * The Has triggered quest.
+     * User Has triggered quest.
      */
     static boolean hasTriggeredQuest = false;
     /**
-     * The Has first interact.
+     * User Has first interact.
      */
     static boolean hasFirstInteract = false;
     /**
-     * The Has obtained armour.
+     * User Has obtained armour.
      */
     static boolean hasObtainedArmour = false;
     /**
-     * The Has obtained blade.
+     * User Has obtained blade.
      */
     static boolean hasObtainedBlade = false;
     /**

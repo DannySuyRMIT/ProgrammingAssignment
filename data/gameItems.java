@@ -19,7 +19,7 @@ public abstract class gameItems {
      */
     public String itemType;
     /**
-     * The Can sell.
+     * item that can sell.
      */
     public boolean canSell = true;
 
@@ -29,10 +29,10 @@ public abstract class gameItems {
      *
      * @param itemName the item name
      * @param toolTip  the tool tip
-     * @param itemQty  the item qty
+     * @param itemQty  the item quantity
      * @param itemCost the item cost
      * @param itemType the item type
-     * @param canSell  the can sell
+     * @param canSell  item that can sell
      */
     public gameItems(String itemName, String toolTip, int itemQty, int itemCost, String itemType, boolean canSell) {
         this.itemName = itemName;
@@ -87,9 +87,9 @@ public abstract class gameItems {
     }
 
     /**
-     * Gets item qty.
+     * Gets item quantity.
      *
-     * @return the item qty
+     * @return the item quantity
      */
     public int getItemQty() {
         return this.itemQty;
@@ -116,7 +116,7 @@ public abstract class gameItems {
     /**
      * Gets can sell.
      *
-     * @return the can sell
+     * @return item that can sell
      */
     public boolean getCanSell() {
         return canSell;
@@ -132,9 +132,9 @@ public abstract class gameItems {
     }
 
     /**
-     * Sets item qty.
+     * Sets item quantity.
      *
-     * @param itemQty the item qty
+     * @param itemQty the item quantity
      */
     public void setItemQty(int itemQty) {
         this.itemQty = itemQty;

@@ -16,10 +16,10 @@ public class gameBasicItem extends gameItems {
      *
      * @param itemName the item name
      * @param toolTip  the tool tip
-     * @param itemQty  the item qty
+     * @param itemQty  the item quantity
      * @param itemCost the item cost
      * @param itemType the item type
-     * @param canSell  the can sell
+     * @param canSell  item that can sell
      */
     public gameBasicItem(String itemName, String toolTip, int itemQty,int itemCost, String itemType, boolean canSell) {
         super(itemName,toolTip,itemQty,itemCost,itemType, canSell);
