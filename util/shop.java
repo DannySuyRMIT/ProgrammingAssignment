@@ -32,8 +32,8 @@ public class shop {
         shopInventory.add(new gameArmourItems("dull steel leggings","Bit difficult to move in, but still protects.",1,8,true,2));
         shopInventory.add(new gameArmourItems("dull steel boots","You might trip, so don't do that.",1,4,true,1));
         // Utility
-        shopInventory.add(new gameItems("pebble","A small stone... might trip your foe",3,2,"Usable",false));
-        shopInventory.add(new gameItems("red potion","Wonders of alchemy... tastes bitter, but heals you. grants 15HP.",5,4,"Usable",true));
+        shopInventory.add(new gameBasicItem("pebble","A small stone... might trip your foe",3,2,"Usable",false));
+        shopInventory.add(new gameBasicItem("red potion","Wonders of alchemy... tastes bitter, but heals you. grants 15HP.",5,4,"Usable",true));
         return shopInventory;
     }
 
@@ -49,11 +49,11 @@ public class shop {
         shopGambleInventory.add(new gameWeaponItems("gilded blade","Sharpened enough not to damage the gold. You might get robbed when using this.",1,0,true,5));
 
         // Utility
-        shopGambleInventory.add(new gameItems("gilded pebble","A shiny pebble with flair. Twice as likely to trip your foe.",5,0,"usable",false));
-        shopGambleInventory.add(new gameItems("shiny potion","better than red, but still just as bitter. Increases HP and ATK.",3,0,"usable",true));
+        shopGambleInventory.add(new gameBasicItem("gilded pebble","A shiny pebble with flair. Twice as likely to trip your foe.",5,0,"usable",false));
+        shopGambleInventory.add(new gameBasicItem("shiny potion","better than red, but still just as bitter. Increases HP and ATK.",3,0,"usable",true));
 
         // Fodder
-        shopGambleInventory.add(new gameItems("dirty dirt","Dirt. plain old dirt. if you sift it, you might find a nugget.",8,0,"useless",false));
+        shopGambleInventory.add(new gameBasicItem("dirty dirt","Dirt. plain old dirt. if you sift it, you might find a nugget.",8,0,"useless",false));
 
         return shopGambleInventory;
     }
@@ -144,7 +144,7 @@ public class shop {
                 System.out.print("Item Obtained: \n"+shopGambleInventory.get(chosenRandomIndex));
 
                 //Provide to user
-                gamePlayer.getPlayerInventory().add(new gameItems(shopGambleInventory.get(chosenRandomIndex)));
+                gamePlayer.getPlayerInventory().add(shopGambleInventory.get(chosenRandomIndex));
 
             }
         } else if (userChoice.equals("n")) {
@@ -180,6 +180,7 @@ public class shop {
         if (gameCore.isMapUnlocked() == false && userChoice.equals("map")) {
             if (spiritCoins >= 5) {
                 spiritCoins -=  5;
+                gamePlayer.setPlayerSpiritCoins(spiritCoins);
                 gameCore.unlockMap();
             } else {
                 System.out.print("You do not have enough spirit Coins\n");
@@ -189,23 +190,23 @@ public class shop {
             userChoice = userScanner.userScan();
         } else if (!userChoice.equals("map")) {
             String itemSelect = userChoice;
-            boolean itemFound = false; //flags whether item is found
-            int shopCost = 0; // Assigns purchase cost to 0 whenever shop is visited
+            boolean shopItemFound = false; //flags whether item is found
+            boolean inventoryitemFound = false;
+            int shopCost = 0;
             int index = 0;
             int itemQty = 0;
-            int inventoryIndex = 0; // Checks to see if item exists within Inventory. Should it exist, +1 to qty.
-            boolean inventoryFlag = false; // Used alongside inventoryIndex, only as a flag.
+
 
             for (int i = 0; i < shopInventory.size(); i++) {
                 if (itemSelect.equals(shopInventory.get(i).getItemName())) {
-                    itemFound = true;
+                    shopItemFound = true;
                     shopCost = shopInventory.get(i).getItemCost();
                     index = i;
                     itemQty = shopInventory.get(i).getItemQty();
                 }
             }
 
-            if (itemFound && spiritCoins >= shopCost && itemQty > 0) {
+            if (shopItemFound && spiritCoins >= shopCost && itemQty > 0) {
                 System.out.printf("\n%s costs: $%d. You have $%d. Purchase?\n[Y] / [N]\n", itemSelect, shopCost, spiritCoins);
                 userChoice = userScanner.userScan().trim();
 
@@ -215,17 +216,22 @@ public class shop {
                         // Search inventory || Section commented out until Connected with Inventory
 
                         for (int i = 0; i < gamePlayer.getPlayerInventory().size(); i++) {
-                            if (itemSelect.equals(gamePlayer.getPlayerInventory().get(i).getItemName())) {
-                                inventoryIndex = 1;
-                                inventoryFlag = true;
+                            gameItems inventoryItem = gamePlayer.getPlayerInventory().get(i);
+                            if (itemSelect.equalsIgnoreCase(inventoryItem.getItemName())) {
+                                // Add additional
+                                inventoryItem.setItemQty(inventoryItem.getItemQty()+1);
+                                inventoryitemFound = true;
+                                break;
                             }
                         }
 
-                        if (inventoryFlag == true) { // Runs following only when Item exists within Inventory. +1 to item.
-                            gamePlayer.getPlayerInventory().get(inventoryIndex).setItemQty(gamePlayer.getPlayerInventory().get(inventoryIndex).getItemQty() + 1);
-                        } else { // should item not exist, add to inventory
-                            gamePlayer.getPlayerInventory().add(new gameItems(shopInventory.get(index)));
+                        if (!inventoryitemFound) { // Keeps the subclass || .copy preserves specific subclasses without overwritting
+                           gameItems copiedItem = shopInventory.get(index).copy();
+                            copiedItem.setItemQty(1);
+                            gamePlayer.getPlayerInventory().add(copiedItem);
                         }
+
+                        // Obtain new currentcoins
                         spiritCoins -= shopCost;
                         gamePlayer.setPlayerSpiritCoins(spiritCoins);
                         shopInventory.get(index).setItemQty(shopInventory.get(index).getItemQty() - 1);
@@ -238,9 +244,9 @@ public class shop {
                         break;
                 }
 
-            } else if (itemFound && spiritCoins < shopCost) {
+            } else if (shopItemFound && spiritCoins < shopCost) {
                 System.out.println("Not enough coins... come back richer?");
-            } else if (itemFound = false || itemQty == 0) {
+            } else if (shopItemFound = false || itemQty == 0) {
                 System.out.print("item " + itemSelect + " not available.\n");
             } else {
                 System.out.print("Taking too long caused you to be kicked out for now...\n\n");

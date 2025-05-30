@@ -10,8 +10,7 @@ public class gameEnemy {
     String entityName;
     int entityHealth;
     int entityAttackPower;
-    gameItems dropItem;
-    int dropChance;
+     int dropChance;
 
     // Enemy Creation
     public gameEnemy(String entityName, int entityHealth, int entityAttackPower, int dropChance) {
@@ -20,6 +19,10 @@ public class gameEnemy {
         this.entityAttackPower = entityAttackPower;
         this.dropChance = dropChance;
 
+    }
+
+    public int getDropChance() {
+        return dropChance;
     }
 
     // Attack method
@@ -89,19 +92,6 @@ public class gameEnemy {
                     break;
             }
         }
-        //Create a drop loot from enemies
-        public void dropLoot(gamePlayer player) {
-            //Roll between 1-100 to see whether enemies drop something or not
-            Random rand = new Random();
-            int roll = rand.nextInt(100) + 1;
-
-            if (roll <= dropChance && !dropItem.getItemName().equalsIgnoreCase("No Drop")) {
-                System.out.println(entityName + " dropped: " + dropItem.getItemName());
-                player.addItem(dropItem);
-            } else {
-                System.out.println(entityName + " dropped nothing.");
-            }
-        }
 
         //Grab random enemy from different category
         public static gameEnemy getRandomCommon() {
@@ -145,6 +135,7 @@ public class gameEnemy {
         public static boolean getLocationBossState() {
             return bossPoolState;
         }
+
 
     } public String toString() {
         return String.format("    Entity: %s\nCurrent HP: %d  |Current ATK: %d",entityName,entityHealth,entityAttackPower);

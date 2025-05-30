@@ -82,6 +82,7 @@ public class gamePlayer {
         for (gameItems item : playerInventory) {
             if (item instanceof Equipable && item.getItemName().equalsIgnoreCase(itemName)) {
                 ((Equipable) item).equip(this); // Cast is still needed
+
                 return;
             }
 

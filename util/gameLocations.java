@@ -1,11 +1,11 @@
 package util;
 import core.gameCore;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
+
+import data.ItemPool;
 import data.gameEnemy;
-import data.gameItems;
 import data.gamePlayer;
 /**@author Christian Rayos */
 /**@Ver 3.5               */
@@ -248,6 +248,7 @@ public class gameLocations {
                                 System.out.print("blind old man: Here! Some armour as an apology!\nI have no use for it anymore, so keep it.\n");
                                 System.out.print("\nThe man leads to his storage room, and there sits a set of samurai armour...\nYou take it, and bid the man farewell.\n");
                                 setHasObtainedArmour();
+                                gamePlayer.addItem(ItemPool.populateWorldInventory().get(2));
                                 System.out.print("\n  Samurai set acquired.\n");
                             }
                         } else {
@@ -445,7 +446,7 @@ public class gameLocations {
                     } else if(getHasPendant() == false && userChoice.equals("pendant")) {
                         System.out.print("Seeing a pendent within the shine, you contemplate taking it... eventually you\ngrab it, due to its' calming presence.\n");
                         setHasPendant();
-                        gamePlayer.addItem(gameItems.populateWorldInventory().get(1));
+                        gamePlayer.addItem(ItemPool.populateWorldInventory().get(1));
                         validChoice = true;
 
                     } else if (userChoice.equals("back")) {
@@ -470,7 +471,7 @@ public class gameLocations {
                         validChoice = true;
                         System.out.print("\nSpotting a blade stabbed in the ground, You glance around before taking it\n. As soon as you grab it though, unwelcomed accompany arrives.\n");
                         setHasObtainedBlade();
-                        gamePlayer.addItem(gameItems.populateWorldInventory().get(0));
+                        gamePlayer.addItem(ItemPool.populateWorldInventory().get(0));
                         if (getHasObtainedBlade() == true && gameEnemy.enemyPool.getLocationTwoPoolState() == true) { // Guaranteed location fight.
                             gameEnemy chosenEnemy = gameEnemy.enemyPool.getRandomTwoLocation();
                             System.out.print("\nEnemy encounter!\n");

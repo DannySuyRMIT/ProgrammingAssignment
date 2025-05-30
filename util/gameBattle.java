@@ -1,6 +1,8 @@
 package util;
 import core.gameCore;
 import data.*;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 /**@author Danny Suy  */
@@ -48,10 +50,13 @@ public class gameBattle {
                 spiritCoins += gamePlayer.getPlayerSpiritCoins();
                 gamePlayer.setPlayerSpiritCoins(spiritCoins);
 
-                int dropItem = droppedChance.nextInt(0,100);
+                int dropItem = droppedChance.nextInt(enemy.getDropChance()-1,100);
                 if (dropItem <= 6) {
-                    dropItem = droppedChance.nextInt(0,shop.populateShopInventory().size()+1);
-                    player.addItem(shop.populateShopInventory().get(dropItem));
+                    ArrayList<gameItems> dropSection = ItemPool.populatedropField();
+                    int dropIndex = droppedChance.nextInt(dropSection.size()); // Keeps within index size
+                    gameItems droppedItems = dropSection.get(dropIndex).copy(); // Preserves subclasses
+                    droppedItems.setItemQty(1); // ensure only 1 when dropping.
+                    player.addItem(droppedItems);
                 }
 
                 break;

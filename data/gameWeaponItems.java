@@ -17,6 +17,11 @@ public class gameWeaponItems extends gameItems implements gamePlayer.Equipable {
         player.equipWeapon(this);
     }
 
+    @Override
+    public gameItems copy() {
+        return new gameWeaponItems(getItemName(),getToolTip(),getItemQty(),getItemCost(),getCanSell(),getItemAtk());
+    }
+
     public int getItemAtk() { //
         return itemAtk;
     }
