@@ -2,10 +2,15 @@ import core.gameCore;
 import util.userScanner;
 
 /**@author Christian Rayos */
-/**@Ver 2.3              */
+/**@Version 2.3              */
 /**@Date 25/05/25        */
 
+/**
+ * @
+ */
+
 public class gameStart {
+
     public static void main(String[] args) {
         // Initialise inputScanner
         userScanner userInput = new userScanner();

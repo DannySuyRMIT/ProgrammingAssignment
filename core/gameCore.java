@@ -73,12 +73,18 @@ public class gameCore {
                     } else if (userChoice.equals("inventory") || userChoice.equals("3")) {
                         // put inventory methods here
                         gamePlayer.showInventory();
+                        System.out.print("");
                     } else if (userChoice.equals("stats") || userChoice.equals("4")) {
-                        // put stats methods here
                         System.out.print("- - -Stats- - -\n");
                         data.gamePlayer.playerStat();
-                        data.gamePlayer.showInventory();
-
+                        System.out.print("\n Would you like to equip an item?\n    [yes]    [no]\n");
+                        userChoice = userScanner.userScan();
+                        if (userChoice.equals("yes") || userChoice.equals("y")) {
+                            gamePlayer.showInventory();
+                            gameLocations.itemInitialize();
+                        } else if (userChoice.equals("no") || userChoice.equals("n")) {
+                            System.out.print("\nExitting stats...\n ");
+                        }
                     } else if (userChoice.equals("back") || userChoice.equals("5")) {
                         loopCheck = true;
                     } else if (userChoice.equals("exit") || userChoice.equals("6")) {

@@ -14,8 +14,9 @@ import java.util.Random;
 public class shop {
 
     // Initialise shopInventory
-    private static ArrayList<gameItems> shopInventory = populateShopInventory();
+
     private static ArrayList<gameItems> shopGambleInventory = populateGambleInventory();
+    private static ArrayList<gameItems> shopInventory = populateShopInventory();
 
     public static ArrayList<gameItems> populateShopInventory() {
         shopInventory = new ArrayList<gameItems>();

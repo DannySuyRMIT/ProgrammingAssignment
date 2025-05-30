@@ -56,7 +56,7 @@ public class gamePlayer {
     }
 
     // Equip weapon
-    public void equipWeapon(gameWeaponItems weapon) {
+    public static void equipWeapon(gameWeaponItems weapon) {
         System.out.println("Unequipped: " + equippedWeapon.getItemName());
         playerAttackPower -= equippedWeapon.getItemAtk();
 
@@ -67,7 +67,7 @@ public class gamePlayer {
     }
 
     // Equip armour
-    public void equipArmour(gameArmourItems armour) {
+    public static void equipArmour(gameArmourItems armour) {
         System.out.println("Unequipped: " + equippedArmour.getItemName());
         playerDefencePower -= equippedArmour.getItemDef();
 
@@ -77,33 +77,30 @@ public class gamePlayer {
         System.out.println("Equipped armour: " + armour.getItemName());
     }
 
-    public void equipWeaponByName(String itemName) {
+
+    public  void equipItemByName(String itemName) {
         for (gameItems item : playerInventory) {
-            if (item.getItemType().equals("Weapon") && item.getItemName().equalsIgnoreCase(itemName)) {
-                equipWeapon((gameWeaponItems) item); // Cast is still needed
+            if (item instanceof Equipable && item.getItemName().equalsIgnoreCase(itemName)) {
+                ((Equipable) item).equip(this); // Cast is still needed
                 return;
             }
+
         }
-        System.out.println("Weapon named '" + itemName + "' not found in inventory.");
+        System.out.println("Equipment named '" + itemName + "' not found in inventory or not equippable.");
     }
 
-    public void equipArmourByName(String itemName) {
-        for (gameItems item : playerInventory) {
-            if (item.getItemType().equals("Armour") && item.getItemName().equalsIgnoreCase(itemName)) {
-                equipArmour((gameArmourItems) item); // Cast is still needed
-                return;
-            }
-        }
-        System.out.println("Armour named '" + itemName + "' not found in inventory.");
-    }
 
     //Check if player has more than 0 HP
     public boolean isAlive() {
         return playerHealth > 0;
     }
 
+    public interface Equipable {
+        void equip(gamePlayer player);
+    }
+
     //add an item to the players inventory when dropped or bought
-    public void addItem(gameItems gameItems) {
+    public static void addItem(gameItems gameItems) {
         if (playerInventory.size() < 8) {
             playerInventory.add(gameItems);
         } else {
@@ -113,7 +110,7 @@ public class gamePlayer {
         System.out.println("You received: " + gameItems);
     }
     // Remove
-    public void removeItem(gameItems gameItems) {
+    public static void removeItem(int gameItems) {
         playerInventory.remove(gameItems);
     }
 
@@ -136,11 +133,7 @@ public class gamePlayer {
         }
 
 
-
-
-
-
-   }
+    }
     public static int getPlayerSpiritCoins() {
         return playerSpiritCoins;
     }
@@ -154,12 +147,6 @@ public class gamePlayer {
 
     public static ArrayList<gameItems> getPlayerInventory() {
         return playerInventory;
-    }
-
-    public static void displayPlayerInventory() {
-        for (int i = 0; i < playerInventory.size(); i++) {
-            System.out.println(" - "+playerInventory.get(i).toString());
-        }
     }
 
     public static void playerStats() {

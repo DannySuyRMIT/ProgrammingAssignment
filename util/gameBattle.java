@@ -14,7 +14,7 @@ public class gameBattle {
         // Battle loop: Player and enemy take turns attacking
         while (player.isAlive() && enemy.isAlive()) {
             //Print stats
-            System.out.print("\n<-- - - - -=entity=- - - - -->");
+            System.out.print("\n<-- - - - -=entity=- - - - -->\n");
             System.out.print(enemy);
             System.out.print("\n\n");
             gamePlayer.playerStats();

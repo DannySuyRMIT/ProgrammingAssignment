@@ -26,6 +26,8 @@ public class gameItems {
 
     }
 
+
+
     // Copies index contents, and pasts it into another parameter field
     public gameItems(gameItems shopToBackpack) {
         this.itemName = shopToBackpack.getItemName();

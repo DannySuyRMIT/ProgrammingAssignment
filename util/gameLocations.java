@@ -30,6 +30,9 @@ public class gameLocations {
     // Initialize
     static gamePlayer player1 = new gamePlayer(gameCore.getUserName(), gamePlayer.getPlayerHealth(),gamePlayer.getPlayerAttackPower(),gamePlayer.getPlayerDefencePower());
 
+    public static void itemInitialize() {
+        player1.equipItemByName(userScanner.userScan());
+    }
 
     public static void locationEntry() {
         int currentLocation = gameMap.getCurrentLocation();

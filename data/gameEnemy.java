@@ -146,5 +146,7 @@ public class gameEnemy {
             return bossPoolState;
         }
 
+    } public String toString() {
+        return String.format("    Entity: %s\nCurrent HP: %d  |Current ATK: %d",entityName,entityHealth,entityAttackPower);
     }
 }
