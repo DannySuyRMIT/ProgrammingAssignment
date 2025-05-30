@@ -162,7 +162,7 @@ public class gamePlayer {
         }
     }
 
-    public void playerStats() {
+    public static void playerStats() {
         System.out.printf("Current ATK: %d\nCurrent HP: %d\nCurrent DEF: %d\n", playerAttackPower, playerHealth, playerDefencePower);
     }
 

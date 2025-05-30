@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**@author Danny Suy  */
-/**@Ver 1.3           */
+/**@Ver 1.5           */
 /**@Date 26/05/25     */
 
 public class gameEnemy {
@@ -14,11 +14,10 @@ public class gameEnemy {
     int dropChance;
 
     // Enemy Creation
-    public gameEnemy(String entityName, int entityHealth, int entityAttackPower, gameItems dropItem, int dropChance) {
+    public gameEnemy(String entityName, int entityHealth, int entityAttackPower, int dropChance) {
         this.entityName = entityName;
         this.entityHealth = entityHealth;
         this.entityAttackPower = entityAttackPower;
-        this.dropItem = dropItem;
         this.dropChance = dropChance;
 
     }
@@ -50,26 +49,26 @@ public class gameEnemy {
 
         static {
             //Common enemies
-            commonEnemies.add(new gameEnemy("Kappa", 10, 3, , 10));
-            commonEnemies.add(new gameEnemy("Ashi-magari", 12, 5, gameWeaponItems, 15));
-            commonEnemies.add(new gameEnemy("Ayakashi", 14, 6));
-            commonEnemies.add(new gameEnemy("Jibakurei", 15, 4));
+            commonEnemies.add(new gameEnemy("Kappa", 10, 3, 10));
+            commonEnemies.add(new gameEnemy("Ashi-magari", 12, 5, 15));
+            commonEnemies.add(new gameEnemy("Ayakashi", 14, 6, 17));
+            commonEnemies.add(new gameEnemy("Jibakurei", 15, 4, 20));
 
             //Location 1 based enemies
-            locationOneEnemies.add(new gameEnemy("Chimimōryō", 15, 6));
-            locationOneEnemies.add(new gameEnemy("Ayakashi V2", 19, 9));
-            locationOneEnemies.add(new gameEnemy("Jibakurei BIG BROTHER", 20, 8));
+            locationOneEnemies.add(new gameEnemy("Chimimōryō", 15, 6, 20));
+            locationOneEnemies.add(new gameEnemy("Ayakashi V2", 19, 9, 25));
+            locationOneEnemies.add(new gameEnemy("Jibakurei BIG BROTHER", 20, 8, 30));
 
             //Location 2 based enemies
-            locationTwoEnemies.add(new gameEnemy("Chimimōryō", 15, 6));
-            locationTwoEnemies.add(new gameEnemy("Ayakashi V2", 19, 9));
-            locationTwoEnemies.add(new gameEnemy("Jibakurei BIG BROTHER", 20, 8));
+            locationTwoEnemies.add(new gameEnemy("Chimimōryō", 15, 6, 22));
+            locationTwoEnemies.add(new gameEnemy("Rokurokubi", 19, 9, 24));
+            locationTwoEnemies.add(new gameEnemy("Oni", 20, 8,28));
 
             //Elite enemies
-            eliteEnemies.add(new gameEnemy("Kitsune", 23, 11));
+            eliteEnemies.add(new gameEnemy("Kitsune", 40, 11, 45));
 
             //Boss enemies
-            bossEnemies.add(new gameEnemy("Ronin", 75, 20));
+            bossEnemies.add(new gameEnemy("Ronin", 75, 20, 100));
         }
 
         public static void disableEnemyPool(String poolName) {
