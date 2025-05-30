@@ -86,6 +86,8 @@ public class gameItems {
         this.itemCost = itemCost;
     }
 
+    public static gameItems noDrop= new gameItems("No Drop", "Nothing dropped", 0, 0, "None", false);
+
     public String toString() {
         return String.format("%dX\t%s\t$%d", this.itemQty, this.itemName, this.itemCost);
     }

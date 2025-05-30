@@ -7,15 +7,20 @@ import java.util.Random;
 /**@Date 26/05/25     */
 
 public class gameEnemy {
-     String entityName;
-     int entityHealth;
-     int entityAttackPower;
+    String entityName;
+    int entityHealth;
+    int entityAttackPower;
+    gameItems dropItem;
+    int dropChance;
 
-    // Constructor
-    public gameEnemy(String entityName, int entityHealth, int entityAttackPower) {
+    // Enemy Creation
+    public gameEnemy(String entityName, int entityHealth, int entityAttackPower, gameItems dropItem, int dropChance) {
         this.entityName = entityName;
         this.entityHealth = entityHealth;
         this.entityAttackPower = entityAttackPower;
+        this.dropItem = dropItem;
+        this.dropChance = dropChance;
+
     }
 
     // Attack method
@@ -45,8 +50,8 @@ public class gameEnemy {
 
         static {
             //Common enemies
-            commonEnemies.add(new gameEnemy("Kappa", 10, 3));
-            commonEnemies.add(new gameEnemy("Ashi-magari", 12, 5));
+            commonEnemies.add(new gameEnemy("Kappa", 10, 3, , 10));
+            commonEnemies.add(new gameEnemy("Ashi-magari", 12, 5, gameWeaponItems, 15));
             commonEnemies.add(new gameEnemy("Ayakashi", 14, 6));
             commonEnemies.add(new gameEnemy("Jibakurei", 15, 4));
 
@@ -69,7 +74,7 @@ public class gameEnemy {
 
         public static void disableEnemyPool(String poolName) {
             switch (poolName) {
-                case "commonEnemies": // commonEnemies Remains open
+                case "commonEnemies":
                     break;
                 case "locationOneEnemies":
                     locationPoolOneState = false;
@@ -85,14 +90,26 @@ public class gameEnemy {
                     break;
             }
         }
+        //Create a drop loot from enemies
+        public void dropLoot(gamePlayer player) {
+            //Roll between 1-100 to see whether enemies drop something or not
+            Random rand = new Random();
+            int roll = rand.nextInt(100) + 1;
 
+            if (roll <= dropChance && !dropItem.getItemName().equalsIgnoreCase("No Drop")) {
+                System.out.println(entityName + " dropped: " + dropItem.getItemName());
+                player.addItem(dropItem);
+            } else {
+                System.out.println(entityName + " dropped nothing.");
+            }
+        }
 
         //Grab random enemy from different category
         public static gameEnemy getRandomCommon() {
             return getRandomFromList(commonEnemies);
         }
 
-        public static gameEnemy getRandomOneLocation() { //
+        public static gameEnemy getRandomOneLocation() {
             return getRandomFromList(locationOneEnemies);
         }
 
@@ -131,8 +148,4 @@ public class gameEnemy {
         }
 
     }
-    public String toString() {
-        return String.format("\n Enemy: %s     \nCurrent HP: %d   |   Current ATK: %d", entityName, entityHealth, entityAttackPower);
-    }
-
 }
